@@ -1,0 +1,4 @@
+tmp/*
+vendor/*
+rm-auth.el
+local-configuration.el
