@@ -61,12 +61,14 @@ FEATURE is available."
   "A list of packages that have been configured with
   `configure-package'.")
 
-(defmacro configure-package (package doc &rest args)
+(defmacro configure-package (package &rest args)
   "Dirty macro to make configuration a little prettier.
 
 PACKAGE is the name of a package to configure.
-DOC is merely for looks and is entirely unused here.
 ARGS is a plist which optionally contains:
+
+  DOCSTRING  The first element of the plist is an optional docstring.
+             This docstring is completely ignored by this macro.
 
   :init      A form to eval at the time `configure-package' is run.
 
@@ -86,6 +88,8 @@ ARGS is a plist which optionally contains:
 This is in a similar vein as github.com/jweigley/use-package but
 extremely less featureful and written only to suit my needs."
   (declare (indent defun))
+  (when (eql 'string (type-of (car args)))
+    (pop args))
   (let* ((installed (cp--package-installed-p package))
 	 (init-form (plist-get args :init))
 	 (after-form (plist-get args :after))
