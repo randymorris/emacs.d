@@ -104,5 +104,20 @@
   :init (setq tramp-default-method "ssh"
               tramp-persistency-file-name "~/.emacs.d/tmp/tramp"))
 
+(configure-package python
+  "fgallina's python.el"
+  :after (progn
+           (define-key python-mode-map (kbd "RET") 'newline-and-indent)
+           (add-hook 'python-mode-hook
+                     '(lambda ()
+                        "Indent with tabs if this file already uses tabs for indentation."
+                        (save-excursion
+                          (goto-char (point-max))
+                          (while (and (re-search-backward "^\\s-" nil t)
+                                      (python-syntax-comment-or-string-p)))
+                          (setq-local indent-tabs-mode (eql (char-after) ?\t)))))))
+
+
+
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
