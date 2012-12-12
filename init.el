@@ -53,9 +53,9 @@
   "Nicer method of visiting files and selecting buffers"
   :init (ido-mode 1)
   :after (setq ido-save-directory-list-file "~/.emacs.d/tmp/ido"
-	       ido-enable-flex-matching t
-	       ido-ignore-buffers '("\\` " "\\\*Messages\\\*" "\\\*Completions\\\*" "\\\*Help\\\*")
-	       ido-decorations (append `(,(format "\n%s " (string #x25ba)) "" "\n  " "\n  ...") (nthcdr 4 ido-decorations))))
+               ido-enable-flex-matching t
+               ido-ignore-buffers '("\\` " "\\\*Messages\\\*" "\\\*Completions\\\*" "\\\*Help\\\*")
+               ido-decorations (append `(,(format "\n%s " (string #x25ba)) "" "\n  " "\n  ...") (nthcdr 4 ido-decorations))))
 
 (configure-package tramp-term
   "Transparent tramp + ansi-term integration"
@@ -72,11 +72,11 @@
           (setq rcirc-omit-responses '("JOIN" "PART" "QUIT" "NICK" "AWAY")
                 rcirc-fill-column 'frame-width
                 rcirc-buffer-maximum-lines 250
-		rcirc-server-alist `((,(plist-get rm-auth-irc :host)
-				      :port ,(plist-get rm-auth-irc :port)
-				      :nick ,(plist-get rm-auth-irc :nick)
-				      :password ,(plist-get rm-auth-irc :password)
-				      :encryption tls)))
+                rcirc-server-alist `((,(plist-get rm-auth-irc :host)
+                                      :port ,(plist-get rm-auth-irc :port)
+                                      :nick ,(plist-get rm-auth-irc :nick)
+                                      :password ,(plist-get rm-auth-irc :password)
+                                      :encryption tls)))
           (add-hook 'rcirc-mode-hook
                     (lambda ()
                       (set (make-local-variable 'scroll-conservatively) 999)
@@ -102,7 +102,7 @@
 (configure-package tramp
   "Transparent Remote Access"
   :init (setq tramp-default-method "ssh"
-	      tramp-persistency-file-name "~/.emacs.d/tmp/tramp"))
+              tramp-persistency-file-name "~/.emacs.d/tmp/tramp"))
 
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
