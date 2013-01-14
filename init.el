@@ -125,7 +125,16 @@
                                       (python-syntax-comment-or-string-p)))
                           (setq-local indent-tabs-mode (eql (char-after) ?\t)))))))
 
-
+(configure-package ps-print
+  "Pretty printing"
+  :after (setq ps-number-of-columns 2
+               ps-landscape-mode t
+               ps-header-font-size '(8.5 . 10)
+               ps-print-color-p 'black-white
+               ps-header-offset 14
+               ps-inter-column 40
+               ps-left-margin 40
+               ps-right-margin 40))
 
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
