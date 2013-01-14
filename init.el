@@ -1,5 +1,6 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 (add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'exec-path "~/bin")
 
 (require 'rm-defs)
 (require 'rm-auth)
