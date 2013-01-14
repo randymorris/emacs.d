@@ -58,6 +58,13 @@
                ido-ignore-buffers '("\\` " "\\\*Messages\\\*" "\\\*Completions\\\*" "\\\*Help\\\*")
                ido-decorations (append `(,(format "\n%s " (string #x25ba)) "" "\n  " "\n  ...") (nthcdr 4 ido-decorations))))
 
+(configure-package saveplace
+  "Restore point position when revisiting a file"
+  :init (require 'saveplace)
+  :after (progn
+           (setq-default save-place t)
+           (setq save-place-file "~/.emacs.d/tmp/places")))
+
 (configure-package tramp-term
   "Transparent tramp + ansi-term integration"
   :init (defalias 'ssh 'tramp-term)
