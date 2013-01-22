@@ -136,5 +136,15 @@
                ps-left-margin 40
                ps-right-margin 40))
 
+(configure-package shell
+  "Shell inside Emacs"
+  :after (add-hook 'shell-mode-hook
+		   '(lambda ()
+		      (local-set-key (kbd "C-l")
+				     '(lambda ()
+					(interactive)
+					(let ((comint-buffer-maximum-size 0))
+					  (comint-truncate-buffer)))))))
+
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
