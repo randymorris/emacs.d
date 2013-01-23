@@ -142,10 +142,10 @@
 (configure-package shell
   "Shell inside Emacs"
   :after (define-key shell-mode-map (kbd "C-l")
-	   '(lambda ()
-	      (interactive)
-	      (let ((comint-buffer-maximum-size 0))
-		(comint-truncate-buffer)))))
+           '(lambda ()
+              (interactive)
+              (let ((comint-buffer-maximum-size 0))
+                (comint-truncate-buffer)))))
 
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
