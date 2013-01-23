@@ -147,5 +147,11 @@
               (let ((comint-buffer-maximum-size 0))
                 (comint-truncate-buffer)))))
 
+(configure-package ack
+  "Replacement for M-x find-grep"
+  :after (setq ack-command (concat (cond ((executable-find "ag"))
+                                         ((executable-find "ack-grep"))
+                                         ((executable-find "ack"))) " ")))
+
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
