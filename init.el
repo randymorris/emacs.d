@@ -19,6 +19,9 @@
       auto-save-list-file-prefix "~/.emacs.d/tmp/autosaves/"
       url-configuration-directory "~/.emacs.d/tmp/url/")
 
+;; tabs
+(setq-default indent-tabs-mode nil)
+
 ;; swap meta and command on OSX
 (setq mac-option-modifier 'super
       mac-command-modifier 'meta)
