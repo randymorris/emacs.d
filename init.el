@@ -149,6 +149,7 @@
 
 (configure-package ack
   "Replacement for M-x find-grep"
+  :init (defalias 'ag 'ack)
   :after (setq ack-command (concat (cond ((executable-find "ag"))
                                          ((executable-find "ack-grep"))
                                          ((executable-find "ack"))) " ")))
