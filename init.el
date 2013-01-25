@@ -154,5 +154,14 @@
                                          ((executable-find "ack-grep"))
                                          ((executable-find "ack"))) " ")))
 
+(configure-package eshell
+  "Shell written in Elisp"
+  :after (progn
+           (setq eshell-history-file-name "~/.emacs.d/tmp/eshell-history")
+           (defun eshell/ack (arg)
+             (require 'ack)
+             (ack (format "%s %s" ack-command arg)))
+           (defalias 'eshell/ag 'eshell/ack)))
+
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
