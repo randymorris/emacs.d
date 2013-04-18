@@ -173,14 +173,6 @@
                ps-left-margin 40
                ps-right-margin 40))
 
-(configure-package shell
-  "Shell inside Emacs"
-  :after (define-key shell-mode-map (kbd "C-l")
-           '(lambda ()
-              (interactive)
-              (let ((comint-buffer-maximum-size 0))
-                (comint-truncate-buffer)))))
-
 (configure-package ack
   "Replacement for M-x find-grep"
   :init (defalias 'ag 'ack)
