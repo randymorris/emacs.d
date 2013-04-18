@@ -192,5 +192,15 @@
            (set-face-attribute 'term-color-cyan nil :background "#93e0e3" :foreground "#93e0e3")
            (set-face-attribute 'term-color-white nil :background "#dcdccc" :foreground "#dcdccc")))
 
+(configure-package whitespace
+  :init (global-whitespace-mode)
+  :after (progn
+           (setq whitespace-style '(face tabs spaces trailing
+                                         space-before-tab newline
+                                         space-mark tab-mark newline-mark)
+                 whitespace-display-mappings '((space-mark 32 [183])
+                                               (newline-mark 10 [9166 10])
+                                               (tab-mark 9 [8677 9])))))
+
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
