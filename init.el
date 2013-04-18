@@ -202,5 +202,10 @@
                                                (newline-mark 10 [9166 10])
                                                (tab-mark 9 [8677 9])))))
 
+(configure-package multiple-cursors
+  :after (progn
+           (global-set-key (kbd "C-x m") 'mc/mark-next-like-this)
+           (global-set-key (kbd "C-x M") 'mc/mark-all-like-this-dwim)))
+
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
