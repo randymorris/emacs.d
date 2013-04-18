@@ -127,7 +127,39 @@
                           (goto-char (point-max))
                           (while (and (re-search-backward "^\\s-" nil t)
                                       (python-syntax-comment-or-string-p)))
-                          (setq-local indent-tabs-mode (eql (char-after) ?\t)))))))
+                          (setq-local indent-tabs-mode (eql (char-after) ?\t)))))
+
+           (defvar python-outline-regex "^\\(if \\|\\s-*?\\(class\\|def\\)\\)")
+           (defun python-occur-outline ()
+             "Displays a clickable rudimentary outline using occur"
+             (interactive)
+             (occur python-outline-regex)
+             (save-excursion
+               (set-buffer (get-buffer "*Occur*"))
+               (goto-char (point-min))
+               (let ((inhibit-read-only t))
+                 (when (looking-at "^[0-9]+ match\\(es\\) for \"")
+                   (zap-to-char 1 ?:)
+                   (insert "# Outline:"))
+                 (forward-line 1)
+                 (set-text-properties (point-min) (point) '(face font-lock-comment-face))
+                 (while (re-search-forward "^[ \t]*[0-9]+:" (point-max) t)
+                   (replace-match "")
+                   (forward-line 1))
+
+                 (goto-char (point-min))
+                 (forward-line 1)
+                 (while (re-search-forward python-outline-regex (point-max) t)
+                   (set-text-properties (line-beginning-position) (point)
+                                        '(face font-lock-keyword-face)))
+                 (goto-char (point-min))
+                 (forward-line 1)
+                 (while (re-search-forward "^[^ \t]" (point-max) t)
+                   (beginning-of-line)
+                   (newline)
+                   (forward-line 1)))))
+
+           (define-key python-mode-map (kbd "C-c o") 'python-occur-outline)))
 
 (configure-package ps-print
   "Pretty printing"
