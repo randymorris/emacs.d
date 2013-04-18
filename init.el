@@ -78,10 +78,6 @@
   :init (defalias 'ssh 'tramp-term)
   :autoload (tramp-term))
 
-(configure-package dtrt-indent
-  "Inspect buffer contents to determine indentation style"
-  :init (dtrt-indent-mode))
-
 (configure-package rcirc
   "IRC client"
   :init (progn
