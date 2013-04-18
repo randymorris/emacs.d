@@ -207,5 +207,8 @@
            (global-set-key (kbd "C-x m") 'mc/mark-next-like-this)
            (global-set-key (kbd "C-x M") 'mc/mark-all-like-this-dwim)))
 
+(configure-package uniquify
+  :init (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
+
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
