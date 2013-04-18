@@ -180,6 +180,17 @@
                                          ((executable-find "ack-grep"))
                                          ((executable-find "ack"))) " ")))
 
+(configure-package term
+  "term and ansi-term"
+  :after (progn
+           (set-face-attribute 'term-color-black nil :background "#3f3f3f" :foreground "#3f3f3f")
+           (set-face-attribute 'term-color-red nil :background "#cc9393" :foreground "#cc9393")
+           (set-face-attribute 'term-color-green nil :background "#7f9f7f" :foreground "#7f9f7f")
+           (set-face-attribute 'term-color-yellow nil :background "#f0dfaf" :foreground "#f0dfaf")
+           (set-face-attribute 'term-color-blue nil :background "#8cd0d3" :foreground "#8cd0d3")
+           (set-face-attribute 'term-color-magenta nil :background "#dc8cc3" :foreground "#dc8cc3")
+           (set-face-attribute 'term-color-cyan nil :background "#93e0e3" :foreground "#93e0e3")
+           (set-face-attribute 'term-color-white nil :background "#dcdccc" :foreground "#dcdccc")))
 
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
