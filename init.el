@@ -19,6 +19,9 @@
       auto-save-list-file-prefix "~/.emacs.d/tmp/autosaves/"
       url-configuration-directory "~/.emacs.d/tmp/url/")
 
+;; disabled commands
+(put 'narrow-to-region 'disabled nil)
+
 ;; tabs
 (setq-default indent-tabs-mode nil)
 
