@@ -29,7 +29,9 @@
 (setq mac-option-modifier 'super
       mac-command-modifier 'meta)
 
+;; customize
 (setq custom-file "~/.emacs.d/custom.el")
+(load-file custom-file)
 
 ;; package.el setup
 (require 'package)
