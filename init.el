@@ -70,6 +70,14 @@
                ido-ignore-buffers '("\\` " "\\\*Messages\\\*" "\\\*Completions\\\*" "\\\*Help\\\*")
                ido-decorations (append `(,(format "\n%s " (string #x25ba)) "" "\n  " "\n  ...") (nthcdr 4 ido-decorations))))
 
+(configure-package smex
+  "Smarter M-x"
+  :init (smex-initialize)
+  :after (setq smex-save-file "~/.emacs.d/tmp/smex-items")
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)
+         ("C-c M-x" . execute-extended-command)))
+
 (configure-package saveplace
   "Restore point position when revisiting a file"
   :init (require 'saveplace)
