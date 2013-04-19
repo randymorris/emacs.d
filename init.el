@@ -16,6 +16,7 @@
       require-final-newline t
       scroll-conservatively 1
       backup-inhibited t
+      mouse-yank-at-point t
       auto-save-list-file-prefix "~/.emacs.d/tmp/autosaves/"
       url-configuration-directory "~/.emacs.d/tmp/url/")
 
