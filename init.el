@@ -59,7 +59,7 @@
 
 (configure-package hippie-exp
   "Extensive list of completion methods"
-  :bind (("M-SPC" . hippie-expand)))
+  :bind (("M-/" . hippie-expand)))
 
 (configure-package ido
   "Nicer method of visiting files and selecting buffers"
