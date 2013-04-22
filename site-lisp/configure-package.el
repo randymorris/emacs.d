@@ -97,7 +97,7 @@ extremely less featureful and written only to suit my needs."
          (binds (plist-get args :bind))
          (requires (plist-get args :requires))
          (missing-reqs (cp--get-missing-requirements requires)))
-    (add-to-list 'configured-packages  package)
+    (add-to-list 'configured-packages  package t)
     (if missing-reqs
         (progn
           (mapc #'(lambda (req)
