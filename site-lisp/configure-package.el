@@ -5,7 +5,7 @@
 ;; Author: Randy Morris <randy.morris@archlinux.us>
 ;; Version: 0.0.1
 ;; Keywords: configuration, packages, extensions
-;; Package-Requires: 
+;; Package-Requires:
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License
@@ -32,12 +32,12 @@
   "Returns a list of absolute paths built from `load-path',
 `load-suffixes', and the string PACKAGE."
   (let (all
-	(suffixes (append load-suffixes '(""))))
+        (suffixes (append load-suffixes '(""))))
     (dolist (path load-path)
       (dolist (suffix suffixes)
-	(let* ((filename (concat package suffix))
-	       (full-path (expand-file-name filename path)))
-	  (setq all (append all `(,full-path))))))
+        (let* ((filename (concat package suffix))
+               (full-path (expand-file-name filename path)))
+          (setq all (append all `(,full-path))))))
     all))
 
 (defun cp--package-installed-p (feature)
@@ -51,8 +51,8 @@ FEATURE is available."
 (defun cp--get-missing-requirements (requirements)
   "Return a list of requirements that are not yet installed."
   (delq nil (mapcar #'(lambda (req)
-			(if (not (cp--package-installed-p req))
-			    req)) requirements)))
+                        (if (not (cp--package-installed-p req))
+                            req)) requirements)))
 
 (defun cp--log (msg &rest args)
   (message "configure-package: %s" (apply 'format msg args)))
@@ -91,34 +91,34 @@ extremely less featureful and written only to suit my needs."
   (when (eql 'string (type-of (car args)))
     (pop args))
   (let* ((installed (cp--package-installed-p package))
-	 (init-form (plist-get args :init))
-	 (after-form (plist-get args :after))
-	 (autoloads (plist-get args :autoload))
-	 (binds (plist-get args :bind))
-	 (requires (plist-get args :requires))
-	 (missing-reqs (cp--get-missing-requirements requires)))
+         (init-form (plist-get args :init))
+         (after-form (plist-get args :after))
+         (autoloads (plist-get args :autoload))
+         (binds (plist-get args :bind))
+         (requires (plist-get args :requires))
+         (missing-reqs (cp--get-missing-requirements requires)))
     (add-to-list 'configured-packages  package)
     (if missing-reqs
-	(progn 
-	  (mapc #'(lambda (req)
-		    (cp--log "Missing requirement `%s' for `%s'" req package))
-		missing-reqs)
-	  nil)
+        (progn
+          (mapc #'(lambda (req)
+                    (cp--log "Missing requirement `%s' for `%s'" req package))
+                missing-reqs)
+          nil)
       (if installed
-	`(progn
-	   ,(when init-form init-form)
-	   ,(when after-form `(eval-after-load (quote ,package) (quote ,after-form)))
-	   ,@(when autoloads
-	       (mapcar #'(lambda (fn) 
-			   `(autoload (quote ,fn) ,(symbol-name package) "" t))
-		       autoloads))
-	   ,@(when binds
-	       (mapcar #'(lambda (keys) 
-			   `(progn
-			      (autoload (quote ,(cdr keys)) ,(symbol-name package) "" t)
-			      (global-set-key (kbd ,(car keys)) (quote ,(cdr keys)))))
-		       binds)))
-	(cp--log "Package `%s' not installed" package)))))
+        `(progn
+           ,(when init-form init-form)
+           ,(when after-form `(eval-after-load (quote ,package) (quote ,after-form)))
+           ,@(when autoloads
+               (mapcar #'(lambda (fn)
+                           `(autoload (quote ,fn) ,(symbol-name package) "" t))
+                       autoloads))
+           ,@(when binds
+               (mapcar #'(lambda (keys)
+                           `(progn
+                              (autoload (quote ,(cdr keys)) ,(symbol-name package) "" t)
+                              (global-set-key (kbd ,(car keys)) (quote ,(cdr keys)))))
+                       binds)))
+        (cp--log "Package `%s' not installed" package)))))
 
 (defun install-configured-packages ()
   "Instal all packages that have been configured with `configure-package'."
@@ -126,9 +126,9 @@ extremely less featureful and written only to suit my needs."
   (package-refresh-contents)
   (dolist (package configured-packages)
     (condition-case nil
-	;; package-install throws an error if a package isn't available.
-	;; I don't care if it's not available right now.
-	(package-install package)
+        ;; package-install throws an error if a package isn't available.
+        ;; I don't care if it's not available right now.
+        (package-install package)
       ((error) nil))))
 
 (provide 'configure-package)
