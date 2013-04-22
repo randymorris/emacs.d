@@ -84,6 +84,7 @@
 
 (configure-package smex
   "Smarter M-x"
+  :requires (recentf ido)
   :init (smex-initialize)
   :after (setq smex-save-file "~/.emacs.d/tmp/smex-items")
   :bind (("M-x" . smex)
