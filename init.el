@@ -78,6 +78,9 @@
   :requires (ido ido-ubiquitous)
   :init (ido-vertical-mode 1))
 
+(configure-package recentf
+  "Recently used files"
+  :after (setq recentf-save-file "~/.emacs.d/tmp/recent-files"))
 
 (configure-package smex
   "Smarter M-x"
