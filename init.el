@@ -66,9 +66,18 @@
   :init (ido-mode 1)
   :after (setq ido-save-directory-list-file "~/.emacs.d/tmp/ido"
                ido-enable-flex-matching t
-               ido-use-virtual-buffers t
-               ido-ignore-buffers '("\\` " "\\\*Messages\\\*" "\\\*Completions\\\*" "\\\*Help\\\*")
-               ido-decorations (append `(,(format "\n%s " (string #x25ba)) "" "\n  " "\n  ...") (nthcdr 4 ido-decorations))))
+               ido-use-virtual-buffers t))
+
+(configure-package ido-ubiquitous
+  "Use ido everywhere"
+  :requires (ido)
+  :init (ido-ubiquitous-mode 1))
+
+(configure-package ido-vertical-mode
+  "Display ido menus vertically"
+  :requires (ido ido-ubiquitous)
+  :init (ido-vertical-mode 1))
+
 
 (configure-package smex
   "Smarter M-x"
