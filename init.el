@@ -218,6 +218,7 @@
            (set-face-attribute 'term-color-white nil :background "#dcdccc" :foreground "#dcdccc")))
 
 (configure-package whitespace
+  "Display whitespace with visibile characters"
   :init (global-whitespace-mode)
   :after (progn
            (setq whitespace-style '(face tabs spaces trailing
@@ -233,6 +234,7 @@
          ("C-x M" . mc/mark-all-like-this-dwim)))
 
 (configure-package uniquify
+  "Configure how emacs deals with duplicate buffer names"
   :init (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
 (configure-package jinja2-mode
