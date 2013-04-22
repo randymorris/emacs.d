@@ -234,5 +234,9 @@
 (configure-package uniquify
   :init (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
+(configure-package jinja2-mode
+  "Mode for editing jinja templates"
+  :init (add-to-list 'auto-mode-alist '("\\.jinja\\'" . jinja2-mode)))
+
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
