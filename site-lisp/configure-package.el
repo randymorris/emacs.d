@@ -46,7 +46,7 @@
 Follows the same logic as `load' to determine whether or not
 FEATURE is available."
   (let ((files (cp--possible-paths (symbol-name feature))))
-    (member t (mapcar '(lambda (file) (file-exists-p file)) files))))
+    (member t (mapcar #'(lambda (file) (file-exists-p file)) files))))
 
 (defun cp--get-missing-requirements (requirements)
   "Return a list of requirements that are not yet installed."
