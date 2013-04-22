@@ -227,9 +227,9 @@
                                                (tab-mark ?\t [?⇥ ?\t])))))
 
 (configure-package multiple-cursors
-  :after (progn
-           (global-set-key (kbd "C-x m") 'mc/mark-next-like-this)
-           (global-set-key (kbd "C-x M") 'mc/mark-all-like-this-dwim)))
+  "Run commands on multiple parts of the buffer simultaniously"
+  :bind (("C-x m" . mc/mark-next-like-this)
+         ("C-x M" . mc/mark-all-like-this-dwim)))
 
 (configure-package uniquify
   :init (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
