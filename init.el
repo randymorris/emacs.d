@@ -53,7 +53,7 @@
 
 (configure-package change-inner
   "Convenience functions for changing delimited blocks of text"
-  :require (expand-region)
+  :requires (expand-region)
   :bind (("M-i" . change-inner)
          ("M-o" . change-outer)))
 

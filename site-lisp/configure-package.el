@@ -95,7 +95,7 @@ extremely less featureful and written only to suit my needs."
 	 (after-form (plist-get args :after))
 	 (autoloads (plist-get args :autoload))
 	 (binds (plist-get args :bind))
-	 (requires (plist-get args :require))
+	 (requires (plist-get args :requires))
 	 (missing-reqs (cp--get-missing-requirements requires)))
     (add-to-list 'configured-packages  package)
     (if missing-reqs
