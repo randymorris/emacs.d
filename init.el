@@ -219,7 +219,8 @@
 
 (configure-package whitespace
   "Display whitespace with visibile characters"
-  :init (global-whitespace-mode)
+  :init (add-hook 'prog-mode-hook #'(lambda ()
+                                      (whitespace-mode 1)))
   :after (progn
            (setq whitespace-style '(face tabs spaces trailing
                                          space-before-tab newline
