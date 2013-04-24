@@ -31,4 +31,11 @@ the buffer list the active window."
   (let ((recenter-positions '(bottom)))
     (recenter-top-bottom)))
 
+(defun raise-ansi-term (buffer-name)
+  (interactive)
+  (let ((buffer (get-buffer (format "*%s*" buffer-name))))
+    (if buffer
+        (switch-to-buffer buffer)
+      (ansi-term shell-file-name buffer-name))))
+
 (provide 'rm-defs)
