@@ -248,6 +248,13 @@
   "Mode for editing jinja templates"
   :init (add-to-list 'auto-mode-alist '("\\.jinja\\'" . jinja2-mode)))
 
+(configure-package org
+  "Org mode"
+  :after (set-pf org
+           startup-indented t
+           default-notes-file "~/todo.org"
+           agenda-files '("~/todo.org")))
+
 (configure-package edit-server
   "Edit files in Emacs from Chromium"
   :init (require 'edit-server)
