@@ -1,5 +1,6 @@
 ;;; Custom function/macro/advice/keymap definitions
 
+(require 'cl-lib)
 
 ;;; advices
 
@@ -37,5 +38,20 @@ the buffer list the active window."
     (if buffer
         (switch-to-buffer buffer)
       (ansi-term shell-file-name buffer-name))))
+
+;;; macros
+
+(defmacro set-pf (prefix &rest optargs)
+  "Set PREFIX-OPT to ARG for OPT, ARG in OPTARGS.
+
+Syntax is similar to `setq'."
+  (declare (indent defun))
+  `(setq
+    ,@(apply 'append
+             (cl-loop for (opt arg) on optargs by #'cddr collect
+                      (let* ((opt (format "%s-%s" prefix opt))
+                             (opt (intern opt)))
+                        (list opt arg))))))
+
 
 (provide 'rm-defs)

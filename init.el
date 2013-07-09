@@ -29,8 +29,9 @@
 (setq-default indent-tabs-mode nil)
 
 ;; swap meta and command on OSX
-(setq mac-option-modifier 'super
-      mac-command-modifier 'meta)
+(set-pf mac
+  option-modifier 'super
+  command-modifier 'meta)
 
 ;; customize
 (setq custom-file "~/.emacs.d/custom.el")
@@ -64,9 +65,10 @@
 (configure-package ido
   "Nicer method of visiting files and selecting buffers"
   :init (ido-mode 1)
-  :after (setq ido-save-directory-list-file "~/.emacs.d/tmp/ido"
-               ido-enable-flex-matching t
-               ido-use-virtual-buffers t))
+  :after (set-pf ido
+           save-directory-list-file "~/.emacs.d/tmp/ido"
+           enable-flex-matching t
+           use-virtual-buffers t))
 
 (configure-package ido-ubiquitous
   "Use ido everywhere"
@@ -106,14 +108,15 @@
 (configure-package rcirc
   "IRC client"
   :init (progn
-          (setq rcirc-omit-responses '("JOIN" "PART" "QUIT" "NICK" "AWAY")
-                rcirc-fill-column 'frame-width
-                rcirc-buffer-maximum-lines 250
-                rcirc-server-alist `((,(plist-get rm-auth-irc :host)
-                                      :port ,(plist-get rm-auth-irc :port)
-                                      :nick ,(plist-get rm-auth-irc :nick)
-                                      :password ,(plist-get rm-auth-irc :password)
-                                      :encryption tls)))
+          (set-pf rcirc
+            omit-responses '("JOIN" "PART" "QUIT" "NICK" "AWAY")
+            fill-column 'frame-width
+            buffer-maximum-lines 250
+            server-alist `((,(plist-get rm-auth-irc :host)
+                            :port ,(plist-get rm-auth-irc :port)
+                            :nick ,(plist-get rm-auth-irc :nick)
+                            :password ,(plist-get rm-auth-irc :password)
+                            :encryption tls)))
           (add-hook 'rcirc-mode-hook
                     (lambda ()
                       (set (make-local-variable 'scroll-conservatively) 999)
@@ -138,8 +141,9 @@
 
 (configure-package tramp
   "Transparent Remote Access"
-  :init (setq tramp-default-method "ssh"
-              tramp-persistency-file-name "~/.emacs.d/tmp/tramp"))
+  :init (set-pf tramp
+          default-method "ssh"
+          persistency-file-name "~/.emacs.d/tmp/tramp"))
 
 (configure-package python
   "fgallina's python.el"
@@ -188,15 +192,16 @@
 
 (configure-package ps-print
   "Pretty printing"
-  :after (setq ps-number-of-columns 2
-               ps-landscape-mode t
-               ps-header-font-size '(8.5 . 10)
-               ps-font-size '(6 . 7.5)
-               ps-print-color-p 'black-white
-               ps-header-offset 14
-               ps-inter-column 40
-               ps-left-margin 40
-               ps-right-margin 40))
+  :after (set-pf ps
+           number-of-columns 2
+           landscape-mode t
+           header-font-size '(8.5 . 10)
+           font-size '(6 . 7.5)
+           print-color-p 'black-white
+           header-offset 14
+           inter-column 40
+           left-margin 40
+           right-margin 40))
 
 (configure-package ack
   "Replacement for M-x find-grep"
@@ -222,12 +227,13 @@
   :init (add-hook 'prog-mode-hook #'(lambda ()
                                       (whitespace-mode 1)))
   :after (progn
-           (setq whitespace-style '(face tabs spaces trailing
-                                         space-before-tab newline
-                                         space-mark tab-mark newline-mark)
-                 whitespace-display-mappings '((space-mark ?\s [?·])
-                                               (newline-mark ?\n [?⏎ ?\n])
-                                               (tab-mark ?\t [?⇥ ?\t])))))
+           (set-pf whitespace
+             style '(face tabs spaces trailing
+                          space-before-tab newline
+                          space-mark tab-mark newline-mark)
+             display-mappings '((space-mark ?\s [?·])
+                                (newline-mark ?\n [?⏎ ?\n])
+                                (tab-mark ?\t [?⇥ ?\t])))))
 
 (configure-package multiple-cursors
   "Run commands on multiple parts of the buffer simultaniously"
@@ -241,6 +247,15 @@
 (configure-package jinja2-mode
   "Mode for editing jinja templates"
   :init (add-to-list 'auto-mode-alist '("\\.jinja\\'" . jinja2-mode)))
+
+(configure-package edit-server
+  "Edit files in Emacs from Chromium"
+  :init (require 'edit-server)
+  :after (progn
+           (set-pf edit-server
+             port 9292
+             new-frame nil)
+           (edit-server-start)))
 
 ;; load machine-specific configuration
 (load "~/.emacs.d/local-configuration.el" t)
