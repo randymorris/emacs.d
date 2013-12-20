@@ -4,6 +4,10 @@
   (package-install 'use-package))
 (require 'use-package)
 
+(use-package diminish
+  ;; Remove minor-mode cruft from the status line
+  :ensure t)
+
 ;;; Ido and friends.
 ;;;
 ;;; Make selecting buffers, files, commands, etc. work in a consistent
@@ -74,6 +78,7 @@
 (use-package whitespace
   ;; Display whitespace as meaningful characters
   :ensure t
+  :diminish whitespace-mode
   :init (add-hook 'prog-mode-hook #'(lambda () (whitespace-mode 1)))
   :config
   (progn
