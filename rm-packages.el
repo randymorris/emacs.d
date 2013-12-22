@@ -153,6 +153,11 @@
     (setq-default save-place t)
     (setq save-place-file "~/.emacs.d/tmp/places")))
 
+(use-package savehist
+  ;; Restore minibuffer history
+  :init (savehist-mode 1)
+  :config (setq savehist-file "~/.emacs.d/tmp/history"))
+
 (use-package hippie-exp
   ;; Extensive list of completion methods
   :bind (("M-/" . hippie-expand)))
