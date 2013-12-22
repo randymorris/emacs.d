@@ -168,7 +168,7 @@
              (cond ((>= arg 16) 'hs-show-all)
                    ((>= arg 4) 'hs-hide-all)
                    (t 'hs-toggle-hiding))))
-          (add-hook 'prog-mode-hook 'hs-minor-mode))
+          (add-hook 'prog-mode-hook #'(lambda () (hs-minor-mode 1))))
   :bind ("C-z" . rm-hs-toggle))
 
 (provide 'rm-packages)
