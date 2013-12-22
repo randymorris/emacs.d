@@ -4,6 +4,19 @@
   (package-install 'use-package))
 (require 'use-package)
 
+(use-package bubbleberry-theme
+  ;; Nice dark theme modeled after Light Table
+  :ensure t
+  :init (load-theme 'bubbleberry t)
+  :config
+  (progn
+    (require 'whitespace)
+    (modify-face 'whitespace-space "gray30" nil)
+    (modify-face 'whitespace-tab "gray30" nil)
+    (modify-face 'whitespace-newline "gray30" nil)
+    (modify-face 'mode-line "#888888" "#303030")
+    (modify-face 'mode-line-inactive "#555555" "#191919")))
+
 (use-package diminish
   ;; Remove minor-mode cruft from the status line
   :ensure t)
