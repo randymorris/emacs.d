@@ -85,8 +85,8 @@
   (progn
     (setq whitespace-style
           '(face tabs spaces trailing
-                 whitespace-space-before-tab newline
-                 whitespace-space-mark tab-mark newline-mark)
+            space-before-tab newline
+            space-mark tab-mark newline-mark)
           whitespace-display-mappings
           '((space-mark ?\s [?·])
             (newline-mark ?\n [?⏎ ?\n])
