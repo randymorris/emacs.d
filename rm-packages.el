@@ -15,7 +15,17 @@
     (modify-face 'whitespace-tab "gray30" nil)
     (modify-face 'whitespace-newline "gray30" nil)
     (modify-face 'mode-line "#888888" "#303030")
-    (modify-face 'mode-line-inactive "#555555" "#191919")))
+    (modify-face 'mode-line-inactive "#555555" "#191919")
+
+    (require 'term)
+    (modify-face 'term-color-black "#3f3f3f" nil)
+    (modify-face 'term-color-red "#ffaaaa" nil)
+    (modify-face 'term-color-green "#b8e9cb" nil)
+    (modify-face 'term-color-yellow "#f0dfaf" nil)
+    (modify-face 'term-color-blue "#99ccee" nil)
+    (modify-face 'term-color-magenta "#dd99dd" nil)
+    (modify-face 'term-color-cyan "#0099aa" nil)
+    (modify-face 'term-color-white "#dcdccc" nil)))
 
 (use-package diminish
   ;; Remove minor-mode cruft from the status line
@@ -61,6 +71,11 @@
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)
          ("C-c M-x" . execute-extended-command)))
+
+(use-package term
+  ;; term and ansi-term
+  :config
+  (define-key term-raw-map (kbd "M-x") nil))
 
 (use-package js2-mode
   ;; A better javascript mode
