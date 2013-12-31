@@ -75,7 +75,7 @@
 (use-package python
   ;; fgallina's python modepp
   :ensure t
-  :mode "\\.py\\'"
+  :mode ("\\.py\\'" . python-mode)
   :config
   (progn
     (define-key python-mode-map (kbd "RET") 'newline-and-indent)
