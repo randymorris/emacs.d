@@ -14,9 +14,9 @@
     (modify-face 'region nil "#444444")
 
     (require 'whitespace)
-    (modify-face 'whitespace-space "gray30" nil)
-    (modify-face 'whitespace-tab "gray30" nil)
-    (modify-face 'whitespace-newline "gray30" nil)
+    (modify-face 'whitespace-space "#4d4d4d" nil)
+    (modify-face 'whitespace-tab "#4d4d4d" nil)
+    (modify-face 'whitespace-newline "#4d4d4d" nil)
     (modify-face 'mode-line "#888888" "#303030")
     (modify-face 'mode-line-inactive "#555555" "#191919")
 
