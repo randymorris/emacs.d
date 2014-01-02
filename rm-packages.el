@@ -10,6 +10,9 @@
   :init (load-theme 'bubbleberry t)
   :config
   (progn
+    ;; A more visible region
+    (modify-face 'region nil "#444444")
+
     (require 'whitespace)
     (modify-face 'whitespace-space "gray30" nil)
     (modify-face 'whitespace-tab "gray30" nil)
