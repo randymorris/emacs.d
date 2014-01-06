@@ -70,7 +70,8 @@
   :ensure t
   :requires (recentf ido)
   :init (smex-initialize)
-  :config (setq smex-save-file "~/.emacs.d/tmp/smex-items")
+  :config (setq smex-save-file "~/.emacs.d/tmp/smex-items"
+                smex-key-advice-ignore-menu-bar t)
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)
          ("C-c M-x" . execute-extended-command)))
