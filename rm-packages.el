@@ -124,6 +124,7 @@
   :ensure t
   :config (setq org-startup-indented t
                 org-default-notes-file "~/todo.org"
+                org-archive-location "::* Archive"
                 org-agenda-files '("~/todo.org")))
 
 (use-package multiple-cursors
