@@ -96,16 +96,7 @@
   :mode ("\\.py\\'" . python-mode)
   :config
   (progn
-    (define-key python-mode-map (kbd "RET") 'newline-and-indent)
-    (add-hook 'python-mode-hook
-              '(lambda ()
-                 "Infer indentation settings"
-                 (save-excursion
-                   (goto-char (point-max))
-                   (while (and (re-search-backward "^\\s-" nil t)
-                               (python-syntax-comment-or-string-p)))
-                   (setq-local indent-tabs-mode (eql (char-after) ?\t)))))))
-
+    (define-key python-mode-map (kbd "RET") 'newline-and-indent)))
 
 (use-package whitespace
   ;; Display whitespace as meaningful characters

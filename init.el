@@ -17,6 +17,17 @@
       scroll-conservatively 1
       inhibit-startup-screen t)
 
+;; default indentation
+(setq-default indent-tabs-mode nil
+              tab-width 4)
+(add-hook 'prog-mode-hook
+          #'(lambda ()
+              (save-excursion
+                (goto-char (point-max))
+                (while (and (re-search-backward "^\\s-" nil t)
+                            (null (nth 8 (syntax-ppss)))))
+                (setq-local indent-tabs-mode (eql (char-after) ?\t)))))
+
 ;; temp files
 (setq auto-save-list-file-prefix "~/.emacs.d/tmp/autosaves/"
       url-configuration-directory "~/.emacs.d/tmp/url/")
