@@ -80,7 +80,7 @@
 (use-package js2-mode
   ;; A better javascript mode
   :ensure t
-  :mode "\\.js\\'")
+  :mode "\\.js\\|\\.jsx\\'")
 
 (use-package jinja2-mode
   ;; Support for jinja-style templates
