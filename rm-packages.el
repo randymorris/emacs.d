@@ -93,7 +93,8 @@
   :mode ("\\.py\\'" . python-mode)
   :config
   (progn
-    (define-key python-mode-map (kbd "RET") 'newline-and-indent)))
+    (define-key python-mode-map (kbd "RET") 'newline-and-indent)
+    (setq tab-width 4)))
 
 (use-package whitespace
   ;; Display whitespace as meaningful characters
