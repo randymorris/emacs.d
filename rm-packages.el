@@ -36,7 +36,10 @@
   :init (ido-mode 1)
   :config (setq ido-save-directory-list-file "~/.emacs.d/tmp/ido"
                 ido-enable-flex-matching t
-                ido-use-virtual-buffers t))
+                ido-use-virtual-buffers t
+                ido-ignore-buffers (append ido-ignore-buffers
+                                           '("\\*Messages\\*"
+                                             "\\*Compile-Log\\*"))))
 
 (use-package flx-ido
   ;; Flex-matching algorithm for ido
