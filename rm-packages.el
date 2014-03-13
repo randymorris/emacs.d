@@ -4,17 +4,17 @@
   (package-install 'use-package))
 (require 'use-package)
 
-(use-package sublime-themes
-  ;; Nice dark theme modeled after Light Table
+(use-package bubbleberry-theme
+  ;; Nice dark theme based on Light Table
   :ensure t
-  :init (load-theme 'mccarthy t)
+  :init (load-theme 'bubbleberry t)
   :config
   (progn
     ;; A more visible region
     (require 'whitespace)
-    (modify-face 'whitespace-space "#cae1ff" nil)
-    (modify-face 'whitespace-tab "#cae1ff" nil)
-    (modify-face 'whitespace-newline "#cae1ff" nil)
+    (modify-face 'whitespace-space "#333344" nil)
+    (modify-face 'whitespace-tab "#333344" nil)
+    (modify-face 'whitespace-newline "#333344" nil)
 
     (require 'term)
     (modify-face 'term-color-black "#3f3f3f" nil)
