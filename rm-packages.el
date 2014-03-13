@@ -122,10 +122,15 @@
 (use-package org
   ;; Org mode
   :ensure t
-  :config (setq org-startup-indented t
-                org-default-notes-file "~/todo.org"
-                org-archive-location "::* Archive"
-                org-agenda-files '("~/todo.org")))
+  :config
+  (progn
+    (setq org-startup-indented t
+          org-default-notes-file "~/todo.org"
+          org-archive-location "::* Archive"
+          org-agenda-files '("~/todo.org")
+          org-plantuml-jar-path (expand-file-name "~/bin/plantuml.jar")
+          org-src-fontify-natively t)
+    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))))
 
 (use-package multiple-cursors
   ;; Run commands on multiple parts of the buffer simultaniously
