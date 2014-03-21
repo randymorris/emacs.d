@@ -11,6 +11,9 @@
   :config
   (progn
     ;; A more visible region
+    (modify-face 'region nil "#444444")
+    (modify-face 'secondary-selection nil "#303030")
+
     (require 'whitespace)
     (modify-face 'whitespace-space "#333344" nil)
     (modify-face 'whitespace-tab "#333344" nil)
