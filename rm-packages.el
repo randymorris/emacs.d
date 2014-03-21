@@ -27,7 +27,10 @@
     (modify-face 'term-color-blue "#99ccee" nil)
     (modify-face 'term-color-magenta "#dd99dd" nil)
     (modify-face 'term-color-cyan "#0099aa" nil)
-    (modify-face 'term-color-white "#dcdccc" nil)))
+    (modify-face 'term-color-white "#dcdccc" nil)
+
+    (require 'org-agenda)
+    (modify-face 'org-agenda-date-weekend "#3f3f3f" nil)))
 
 (use-package diminish
   ;; Remove minor-mode cruft from the status line
@@ -128,12 +131,32 @@
   :config
   (progn
     (setq org-startup-indented t
-          org-default-notes-file "~/todo.org"
-          org-archive-location "::* Archive"
-          org-agenda-files '("~/todo.org")
+          org-default-notes-file "~/org/todo.org"
+          org-archive-location "~/org/archive.org::* From %s"
+          org-agenda-files '("~/org/todo.org")
           org-plantuml-jar-path (expand-file-name "~/bin/plantuml.jar")
-          org-src-fontify-natively t)
-    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))))
+          org-src-fontify-natively t
+          org-todo-keywords '((type "TODO" "IN PROGRESS" "DONE"))
+          org-agenda-custom-commands '(("u" "Agenda and all unscheduled TODO's"
+                                        ((agenda "")
+                                         (todo "" ((org-agenda-todo-ignore-scheduled t)
+                                                   (org-agenda-todo-ignore-deadlines t)))))))
+
+    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+
+    (defun org-agenda-on-idle (&rest args)
+      (unless (eq (buffer-name) "*Org Agenda*")
+        (org-agenda nil "u"))
+      (delete-other-windows))
+    (run-with-idle-timer 900 t 'org-agenda-on-idle)))
+
+(use-package org-capture
+  ;; Quickly make notes to reference later
+  :bind ("C-c C" . org-capture)
+  :requires org
+  :config
+  (setq org-capture-templates
+        '(("t" "Todo" entry (file org-default-notes-file)))))
 
 (use-package multiple-cursors
   ;; Run commands on multiple parts of the buffer simultaniously
