@@ -137,6 +137,7 @@
           org-plantuml-jar-path (expand-file-name "~/bin/plantuml.jar")
           org-src-fontify-natively t
           org-todo-keywords '((type "TODO" "IN PROGRESS" "DONE"))
+          org-todo-keyword-faces '(("IN PROGRESS" . "#fff68f"))
           org-agenda-custom-commands '(("u" "Agenda and all unscheduled TODO's"
                                         ((agenda "")
                                          (todo "" ((org-agenda-todo-ignore-scheduled t)
