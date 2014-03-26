@@ -138,10 +138,16 @@
           org-src-fontify-natively t
           org-todo-keywords '((type "TODO" "IN PROGRESS" "DONE"))
           org-todo-keyword-faces '(("IN PROGRESS" . "#fff68f"))
-          org-agenda-custom-commands '(("u" "Agenda and all unscheduled TODO's"
-                                        ((agenda "")
-                                         (todo "" ((org-agenda-todo-ignore-scheduled t)
-                                                   (org-agenda-todo-ignore-deadlines t)))))))
+          org-agenda-custom-commands
+          '(("u" "Agenda and all unscheduled TODO's"
+             ((agenda "")
+              (todo "" ((org-agenda-todo-ignore-scheduled t)
+                        (org-agenda-todo-ignore-deadlines t))))))
+          org-agenda-sorting-strategy
+          '((agenda habit-down time-up priority-down category-keep todo-state-down)
+            (todo priority-down category-keep todo-state-down)
+            (tags priority-down category-keep)
+            (search category-keep)))
 
     (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
