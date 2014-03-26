@@ -44,8 +44,9 @@
                 ido-enable-flex-matching t
                 ido-use-virtual-buffers t
                 ido-ignore-buffers (append ido-ignore-buffers
-                                           '("\\*Messages\\*"
-                                             "\\*Compile-Log\\*"))))
+                                           '("\\*Messages\\*" "\\*Compile-Log\\*"
+                                             "\\*Completions\\*" "\\*Help\\*"
+                                             "\\*magit-process\\*"))))
 
 (use-package flx-ido
   ;; Flex-matching algorithm for ido
