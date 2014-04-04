@@ -245,6 +245,24 @@
           (add-hook 'prog-mode-hook #'(lambda () (hs-minor-mode 1))))
   :bind ("C-z" . rm-hs-toggle))
 
+(use-package magit
+  :ensure t
+  :config
+  (setq magit-completing-read-function 'magit-ido-completing-read
+        magit-status-buffer-switch-function 'switch-to-buffer
+        magit-save-some-buffers t
+        magit-process-popup-time 10))
+
+(use-package magit-svn
+  :ensure t
+  :init
+  (progn
+    (require 'magit-svn)
+    (defun init-magit-svn-mode-maybe ()
+      (if (magit-svn-get-ref-info)
+          (magit-svn-mode)))
+    (add-hook 'magit-mode-hook 'init-magit-svn-mode-maybe)))
+
 (use-package flycheck
   ;; Syntax checking on the fly
   :ensure t
