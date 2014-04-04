@@ -36,6 +36,11 @@
   ;; Remove minor-mode cruft from the status line
   :ensure t)
 
+(use-package smartrep
+  ;; Easy repeating keybinds
+  :ensure t
+  :init (require 'smartrep))
+
 (use-package ido
   ;; Nicer file/buffer/etc. switching
   :ensure t
@@ -169,8 +174,9 @@
 (use-package multiple-cursors
   ;; Run commands on multiple parts of the buffer simultaniously
   :ensure t
-  :bind (("C-c m" . mc/mark-next-like-this)
-         ("C-c M" . mc/mark-all-like-this-dwim)))
+  :config
+  (smartrep-define-key
+      rm-map "m" '(("m" . 'mc/mark-next-like-this))))
 
 (use-package ack
   ;; Replacement for M-x find-grep

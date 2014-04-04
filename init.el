@@ -35,6 +35,16 @@
 ;; enable disabled commands
 (put 'narrow-to-region 'disabled nil)
 
+;; create my own keymap for bindings
+(define-prefix-command 'rm-map)
+(global-set-key (kbd "C-h") 'rm-map)
+
+;; preserve commonly-used help-map bindings
+(define-key rm-map (kbd "k") 'describe-key)
+(define-key rm-map (kbd "v") 'describe-variable)
+(define-key rm-map (kbd "f") 'describe-function)
+(define-key rm-map (kbd "w") 'where-is)
+
 (load custom-file t)
 (load "~/.emacs.d/local-configuration.el" t)
 
