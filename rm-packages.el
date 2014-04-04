@@ -245,4 +245,12 @@
           (add-hook 'prog-mode-hook #'(lambda () (hs-minor-mode 1))))
   :bind ("C-z" . rm-hs-toggle))
 
+(use-package flycheck
+  ;; Syntax checking on the fly
+  :ensure t
+  :config
+  (smartrep-define-key
+      rm-map "e" '(("n" .'flycheck-next-error)
+                   ("p" . 'flycheck-previous-error))))
+
 (provide 'rm-packages)
