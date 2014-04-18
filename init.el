@@ -55,3 +55,5 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 (require 'rm-packages)
+
+(load "~/.emacs.d/local-packages.el" t)
