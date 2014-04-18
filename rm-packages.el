@@ -90,7 +90,16 @@
 (use-package term
   ;; term and ansi-term
   :config
-  (define-key term-raw-map (kbd "M-x") nil))
+  (progn
+    (defun rm-ansi-term ()
+      (interactive)
+      (let ((buffer (get-buffer "*ansi-term*")))
+        (if buffer
+            (switch-to-buffer buffer)
+          (ansi-term (getenv "SHELL")))))
+    (define-key rm-map (kbd "t") 'rm-ansi-term)
+    (define-key term-raw-map (kbd "C-h") nil)
+    (define-key term-raw-map (kbd "M-x") nil)))
 
 (use-package js2-mode
   ;; A better javascript mode
