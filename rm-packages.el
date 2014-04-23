@@ -48,6 +48,8 @@
   :config (setq ido-save-directory-list-file "~/.emacs.d/tmp/ido"
                 ido-enable-flex-matching t
                 ido-use-virtual-buffers t
+                ido-default-buffer-method 'samewindow
+                ido-default-file-method 'samewindow
                 ido-ignore-buffers (append ido-ignore-buffers
                                            '("\\*Messages\\*" "\\*Compile-Log\\*"
                                              "\\*Completions\\*" "\\*Help\\*"
