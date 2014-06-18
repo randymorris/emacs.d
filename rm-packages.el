@@ -169,13 +169,7 @@
             (tags priority-down category-keep)
             (search category-keep)))
 
-    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
-
-    (defun org-agenda-on-idle (&rest args)
-      (unless (eq (buffer-name) "*Org Agenda*")
-        (org-agenda nil "u"))
-      (delete-other-windows))
-    (run-with-idle-timer 900 t 'org-agenda-on-idle)))
+    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))))
 
 (use-package org-capture
   ;; Quickly make notes to reference later
