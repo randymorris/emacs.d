@@ -217,7 +217,9 @@
   :ensure t
   :config
   (setq tramp-default-method "ssh"
-        tramp-persistency-file-name "~/.emacs.d/tmp/tramp"))
+        tramp-persistency-file-name "~/.emacs.d/tmp/tramp"
+        tramp-shell-prompt-pattern
+        "\\(?:^\\|\\)[^]#$%>\n]*#?[]#$%>]+ *\\(\\[[0-9;]*[a-zA-Z] *\\)*"))
 
 (use-package tramp-term
   ;; Create remote ansi-terms that automatically track pwd
