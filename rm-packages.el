@@ -120,7 +120,10 @@
   :config
   (progn
     (define-key python-mode-map (kbd "RET") 'newline-and-indent)
-    (setq tab-width 4)))
+    (defun rm-fix-python-tab-width ()
+      (setq tab-width 4
+            python-indent-offset 4))
+    (add-hook 'python-mode-hook 'rm-fix-python-tab-width)))
 
 (use-package whitespace
   ;; Display whitespace as meaningful characters
