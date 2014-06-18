@@ -45,6 +45,17 @@
 (define-key rm-map (kbd "f") 'describe-function)
 (define-key rm-map (kbd "w") 'where-is)
 
+;; let C-x o work across frames if there is only one window
+(define-key global-map (kbd "C-x o")
+  #'(lambda ()
+      (interactive)
+      (let ((try-other-frames
+             (and (> (length (frame-list)) 1)
+                  (eq (length (window-list)) 1))))
+        (if try-other-frames            ; This should be unnecessary
+            (other-frame 1)             ;  but I'm too lazy to fix it
+          (other-window 1)))))
+
 (load custom-file t)
 (load "~/.emacs.d/local-configuration.el" t)
 
