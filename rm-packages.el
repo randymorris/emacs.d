@@ -265,10 +265,12 @@
 (use-package magit
   :ensure t
   :config
-  (setq magit-completing-read-function 'magit-ido-completing-read
-        magit-status-buffer-switch-function 'switch-to-buffer
-        magit-save-some-buffers t
-        magit-process-popup-time 10))
+  (progn
+    (setq magit-completing-read-function 'magit-ido-completing-read
+          magit-status-buffer-switch-function 'switch-to-buffer
+          magit-save-some-buffers t
+          magit-process-popup-time 10)
+    (define-key rm-map (kbd "s") 'magit-status)))
 
 (use-package magit-svn
   :ensure t
