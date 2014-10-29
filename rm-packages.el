@@ -4,8 +4,13 @@
   (package-install 'use-package))
 (require 'use-package)
 
+(use-package warm-night-theme
+  :ensure t
+  :init (load-theme 'warm-night t))
+
 (use-package bubbleberry-theme
   ;; Nice dark theme based on Light Table
+  :disabled t
   :ensure t
   :init (load-theme 'bubbleberry t)
   :config
