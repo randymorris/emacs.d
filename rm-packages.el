@@ -189,9 +189,9 @@
   :ensure t
   :config
   (smartrep-define-key
-      rm-map "m" '(("m" . 'mc/mark-next-like-this)
+      rm-map "c" '(("n" . 'mc/mark-next-like-this)
                    ("s" . 'mc/skip-to-next-like-this)
-                   ("M" . 'mc/unmark-next-like-this))))
+                   ("p" . 'mc/unmark-next-like-this))))
 
 (use-package ack
   ;; Replacement for M-x find-grep
