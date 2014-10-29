@@ -63,7 +63,7 @@
 (require 'package)
 (setq package-user-dir "~/.emacs.d/vendor/")
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.net/packages/") t)
 (package-initialize)
 (require 'rm-packages)
 
