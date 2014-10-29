@@ -134,7 +134,7 @@
   ;; Display whitespace as meaningful characters
   :ensure t
   :diminish whitespace-mode
-  :init (add-hook 'prog-mode-hook #'(lambda () (whitespace-mode 1)))
+  :init (add-hook 'prog-mode-hook (lambda () (whitespace-mode 1)))
   :config
   (progn
     (setq whitespace-style
@@ -259,7 +259,7 @@
              (cond ((>= arg 16) 'hs-show-all)
                    ((>= arg 4) 'hs-hide-all)
                    (t 'hs-toggle-hiding))))
-          (add-hook 'prog-mode-hook #'(lambda () (hs-minor-mode 1))))
+          (add-hook 'prog-mode-hook (lambda () (hs-minor-mode 1))))
   :bind ("C-z" . rm-hs-toggle))
 
 (use-package magit
