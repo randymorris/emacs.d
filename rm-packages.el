@@ -14,29 +14,28 @@
   :disabled t
   :ensure t
   :init (load-theme 'bubbleberry t)
-  :config
-  (progn
-    ;; A more visible region
-    (modify-face 'region nil "#444444")
-    (modify-face 'secondary-selection nil "#303030")
+  :config (progn
+            ;; A more visible region
+            (modify-face 'region nil "#444444")
+            (modify-face 'secondary-selection nil "#303030")
 
-    (require 'whitespace)
-    (modify-face 'whitespace-space "#333344" nil)
-    (modify-face 'whitespace-tab "#333344" nil)
-    (modify-face 'whitespace-newline "#333344" nil)
+            (require 'whitespace)
+            (modify-face 'whitespace-space "#333344" nil)
+            (modify-face 'whitespace-tab "#333344" nil)
+            (modify-face 'whitespace-newline "#333344" nil)
 
-    (require 'term)
-    (modify-face 'term-color-black "#3f3f3f" nil)
-    (modify-face 'term-color-red "#ffaaaa" nil)
-    (modify-face 'term-color-green "#b8e9cb" nil)
-    (modify-face 'term-color-yellow "#f0dfaf" nil)
-    (modify-face 'term-color-blue "#99ccee" nil)
-    (modify-face 'term-color-magenta "#dd99dd" nil)
-    (modify-face 'term-color-cyan "#0099aa" nil)
-    (modify-face 'term-color-white "#dcdccc" nil)
+            (require 'term)
+            (modify-face 'term-color-black "#3f3f3f" nil)
+            (modify-face 'term-color-red "#ffaaaa" nil)
+            (modify-face 'term-color-green "#b8e9cb" nil)
+            (modify-face 'term-color-yellow "#f0dfaf" nil)
+            (modify-face 'term-color-blue "#99ccee" nil)
+            (modify-face 'term-color-magenta "#dd99dd" nil)
+            (modify-face 'term-color-cyan "#0099aa" nil)
+            (modify-face 'term-color-white "#dcdccc" nil)
 
-    (require 'org-agenda)
-    (modify-face 'org-agenda-date-weekend "#3f3f3f" nil)))
+            (require 'org-agenda)
+            (modify-face 'org-agenda-date-weekend "#3f3f3f" nil)))
 
 (use-package diminish
   ;; Remove minor-mode cruft from the status line
@@ -97,17 +96,16 @@
 
 (use-package term
   ;; term and ansi-term
-  :config
-  (progn
-    (defun rm-ansi-term ()
-      (interactive)
-      (let ((buffer (get-buffer "*ansi-term*")))
-        (if buffer
-            (switch-to-buffer buffer)
-          (ansi-term (getenv "SHELL")))))
-    (define-key rm-map (kbd "t") 'rm-ansi-term)
-    (define-key term-raw-map (kbd "C-h") nil)
-    (define-key term-raw-map (kbd "M-x") nil)))
+  :config (progn
+            (defun rm-ansi-term ()
+              (interactive)
+              (let ((buffer (get-buffer "*ansi-term*")))
+                (if buffer
+                    (switch-to-buffer buffer)
+                  (ansi-term (getenv "SHELL")))))
+            (define-key rm-map (kbd "t") 'rm-ansi-term)
+            (define-key term-raw-map (kbd "C-h") nil)
+            (define-key term-raw-map (kbd "M-x") nil)))
 
 (use-package js2-mode
   ;; A better javascript mode
@@ -123,29 +121,26 @@
   ;; fgallina's python mode
   :ensure t
   :mode ("\\.py\\'" . python-mode)
-  :config
-  (progn
-    (define-key python-mode-map (kbd "RET") 'newline-and-indent)
-    (defun rm-fix-python-tab-width ()
-      (setq tab-width 4
-            python-indent-offset 4))
-    (add-hook 'python-mode-hook 'rm-fix-python-tab-width)))
+  :config (progn
+            (define-key python-mode-map (kbd "RET") 'newline-and-indent)
+            (defun rm-fix-python-tab-width ()
+              (setq tab-width 4
+                    python-indent-offset 4))
+            (add-hook 'python-mode-hook 'rm-fix-python-tab-width)))
 
 (use-package whitespace
   ;; Display whitespace as meaningful characters
   :ensure t
   :diminish whitespace-mode
   :init (add-hook 'prog-mode-hook (lambda () (whitespace-mode 1)))
-  :config
-  (progn
-    (setq whitespace-style
-          '(face tabs spaces trailing
-            space-before-tab newline
-            space-mark tab-mark newline-mark)
-          whitespace-display-mappings
-          '((space-mark ?\s [?·])
-            (newline-mark ?\n [?⏎ ?\n])
-            (tab-mark ?\t [?⇥ ?\t])))))
+  :config (setq whitespace-style
+                '(face tabs spaces trailing
+                       space-before-tab newline
+                       space-mark tab-mark newline-mark)
+                whitespace-display-mappings
+                '((space-mark ?\s [?·])
+                  (newline-mark ?\n [?⏎ ?\n])
+                  (tab-mark ?\t [?⇥ ?\t]))))
 
 (use-package uniquify
   ;; Better display duplicate buffer names
@@ -154,36 +149,34 @@
 (use-package org
   ;; Org mode
   :ensure t
-  :config
-  (progn
-    (setq org-startup-indented t
-          org-default-notes-file "~/org/todo.org"
-          org-archive-location "~/org/archive.org::* From %s"
-          org-agenda-files '("~/org/todo.org")
-          org-plantuml-jar-path (expand-file-name "~/bin/plantuml.jar")
-          org-src-fontify-natively t
-          org-todo-keywords '((type "TODO" "IN PROGRESS" "DONE"))
-          org-todo-keyword-faces '(("IN PROGRESS" . "#fff68f"))
-          org-agenda-custom-commands
-          '(("u" "Agenda and all unscheduled TODO's"
-             ((agenda "")
-              (todo "" ((org-agenda-todo-ignore-scheduled t)
-                        (org-agenda-todo-ignore-deadlines t))))))
-          org-agenda-sorting-strategy
-          '((agenda habit-down time-up priority-down category-keep todo-state-down)
-            (todo priority-down category-keep todo-state-down)
-            (tags priority-down category-keep)
-            (search category-keep)))
+  :config (progn
+            (setq org-startup-indented t
+                  org-default-notes-file "~/org/todo.org"
+                  org-archive-location "~/org/archive.org::* From %s"
+                  org-agenda-files '("~/org/todo.org")
+                  org-plantuml-jar-path (expand-file-name "~/bin/plantuml.jar")
+                  org-src-fontify-natively t
+                  org-todo-keywords '((type "TODO" "IN PROGRESS" "DONE"))
+                  org-todo-keyword-faces '(("IN PROGRESS" . "#fff68f"))
+                  org-agenda-custom-commands
+                  '(("u" "Agenda and all unscheduled TODO's"
+                     ((agenda "")
+                      (todo "" ((org-agenda-todo-ignore-scheduled t)
+                                (org-agenda-todo-ignore-deadlines t))))))
+                  org-agenda-sorting-strategy
+                  '((agenda habit-down time-up priority-down category-keep todo-state-down)
+                    (todo priority-down category-keep todo-state-down)
+                    (tags priority-down category-keep)
+                    (search category-keep)))
 
-    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))))
+            (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))))
 
 (use-package org-capture
   ;; Quickly make notes to reference later
   :bind ("C-c C" . org-capture)
   :requires org
-  :config
-  (setq org-capture-templates
-        '(("t" "Todo" entry (file org-default-notes-file)))))
+  :config (setq org-capture-templates
+                '(("t" "Todo" entry (file org-default-notes-file)))))
 
 (use-package multiple-cursors
   ;; Run commands on multiple parts of the buffer simultaniously
@@ -198,34 +191,31 @@
   ;; Replacement for M-x find-grep
   :ensure t
   :init (defalias 'ag 'ack)
-  :config
-  (setq ack-command
-        (concat (cond ((executable-find "ag"))
-                      ((executable-find "ack-grep"))
-                      ((executable-find "ack"))) " ")))
+  :config (setq ack-command
+                (concat (cond ((executable-find "ag"))
+                              ((executable-find "ack-grep"))
+                              ((executable-find "ack"))) " ")))
 
 (use-package ps-print
   ;; Pretty printing
   :ensure t
-  :config
-  (setq ps-number-of-columns 2
-        ps-landscape-mode t
-        ps-header-font-size '(8.5 . 10)
-        ps-font-size '(6 . 7.5)
-        ps-print-color-p 'black-white
-        ps-header-offset 14
-        ps-inter-column 40
-        ps-left-margin 40
-        ps-right-margin 40))
+  :config (setq ps-number-of-columns 2
+                ps-landscape-mode t
+                ps-header-font-size '(8.5 . 10)
+                ps-font-size '(6 . 7.5)
+                ps-print-color-p 'black-white
+                ps-header-offset 14
+                ps-inter-column 40
+                ps-left-margin 40
+                ps-right-margin 40))
 
 (use-package tramp
   ;; Transparent Remote Access
   :ensure t
-  :config
-  (setq tramp-default-method "ssh"
-        tramp-persistency-file-name "~/.emacs.d/tmp/tramp"
-        tramp-shell-prompt-pattern
-        "\\(?:^\\|\\)[^]#$%>\n]*#?[]#$%>]+ *\\(\\[[0-9;]*[a-zA-Z] *\\)*"))
+  :config (setq tramp-default-method "ssh"
+                tramp-persistency-file-name "~/.emacs.d/tmp/tramp"
+                tramp-shell-prompt-pattern
+                "\\(?:^\\|\\)[^]#$%>\n]*#?[]#$%>]+ *\\(\\[[0-9;]*[a-zA-Z] *\\)*"))
 
 (use-package tramp-term
   ;; Create remote ansi-terms that automatically track pwd
@@ -235,10 +225,9 @@
 (use-package saveplace
   ;; Restore point position when revisiting a file
   :init (require 'saveplace)
-  :config
-  (progn
-    (setq-default save-place t)
-    (setq save-place-file "~/.emacs.d/tmp/places")))
+  :config (progn
+            (setq-default save-place t)
+            (setq save-place-file "~/.emacs.d/tmp/places")))
 
 (use-package savehist
   ;; Restore minibuffer history
@@ -265,30 +254,27 @@
 
 (use-package magit
   :ensure t
-  :config
-  (progn
-    (setq magit-completing-read-function 'magit-ido-completing-read
-          magit-status-buffer-switch-function 'switch-to-buffer
-          magit-save-some-buffers t
-          magit-process-popup-time 10)
-    (define-key rm-map (kbd "s") 'magit-status)))
+  :config (progn
+            (setq magit-completing-read-function 'magit-ido-completing-read
+                  magit-status-buffer-switch-function 'switch-to-buffer
+                  magit-save-some-buffers t
+                  magit-process-popup-time 10)
+            (define-key rm-map (kbd "s") 'magit-status)))
 
 (use-package magit-svn
   :ensure t
-  :init
-  (progn
-    (require 'magit-svn)
-    (defun init-magit-svn-mode-maybe ()
-      (if (magit-svn-get-ref-info)
-          (magit-svn-mode)))
-    (add-hook 'magit-mode-hook 'init-magit-svn-mode-maybe)))
+  :init (progn
+          (require 'magit-svn)
+          (defun init-magit-svn-mode-maybe ()
+            (if (magit-svn-get-ref-info)
+                (magit-svn-mode)))
+          (add-hook 'magit-mode-hook 'init-magit-svn-mode-maybe)))
 
 (use-package flycheck
   ;; Syntax checking on the fly
   :ensure t
-  :config
-  (smartrep-define-key
-      rm-map "e" '(("n" .'flycheck-next-error)
-                   ("p" . 'flycheck-previous-error))))
+  :config (smartrep-define-key
+              rm-map "e" '(("n" .'flycheck-next-error)
+                           ("p" . 'flycheck-previous-error))))
 
 (provide 'rm-packages)
