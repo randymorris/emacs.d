@@ -1,10 +1,11 @@
-;; ensure use-package is installed
+;; Ensure use-package is installed
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
 
 (use-package warm-night-theme
+  ;; Decent dark theme
   :ensure t
   :init (load-theme 'warm-night t))
 
@@ -119,7 +120,7 @@
   :mode "\\.jinja\\|\\.html\\'")
 
 (use-package python
-  ;; fgallina's python modepp
+  ;; fgallina's python mode
   :ensure t
   :mode ("\\.py\\'" . python-mode)
   :config

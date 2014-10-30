@@ -1,13 +1,13 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
-;; display
+;; Display
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (column-number-mode 1)
 
-;; behavior
+;; Behavior
 (setq backup-inhibited t
       custom-file "~/.emacs.d/custom.el"
       mac-command-modifier 'meta
@@ -17,7 +17,7 @@
       scroll-conservatively 1
       inhibit-startup-screen t)
 
-;; default indentation
+;; Default indentation
 (setq-default indent-tabs-mode nil
               tab-width 4)
 (add-hook 'prog-mode-hook
@@ -28,24 +28,24 @@
                           (null (nth 8 (syntax-ppss)))))
               (setq-local indent-tabs-mode (eql (char-after) ?\t)))))
 
-;; temp files
+;; Temp files
 (setq auto-save-list-file-prefix "~/.emacs.d/tmp/autosaves/"
       url-configuration-directory "~/.emacs.d/tmp/url/")
 
-;; enable disabled commands
+;; Enable disabled commands
 (put 'narrow-to-region 'disabled nil)
 
-;; create my own keymap for bindings
+;; Create my own keymap for bindings
 (define-prefix-command 'rm-map)
 (global-set-key (kbd "C-h") 'rm-map)
 
-;; preserve commonly-used help-map bindings
+;; Preserve commonly-used help-map bindings
 (define-key rm-map (kbd "k") 'describe-key)
 (define-key rm-map (kbd "v") 'describe-variable)
 (define-key rm-map (kbd "f") 'describe-function)
 (define-key rm-map (kbd "w") 'where-is)
 
-;; let C-x o work across frames if there is only one window
+;; Let C-x o work across frames if there is only one window
 (define-key global-map (kbd "C-x o")
   (lambda ()
     (interactive)
@@ -53,13 +53,13 @@
            (and (> (length (frame-list)) 1)
                 (eq (length (window-list)) 1))))
       (if try-other-frames            ; This should be unnecessary
-          (other-frame 1)             ;  but I'm too lazy to fix it
+          (other-frame 1)             ; but I'm too lazy to fix it
         (other-window 1)))))
 
 (load custom-file t)
 (load "~/.emacs.d/local-configuration.el" t)
 
-;; package configuration
+;; Package configuration
 (require 'package)
 (setq package-user-dir "~/.emacs.d/vendor/")
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
