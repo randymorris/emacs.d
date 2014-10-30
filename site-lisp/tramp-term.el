@@ -52,7 +52,7 @@
 enable tramp integration in that terminal."
   (interactive)
   (let* ((host (tt--select-host))
-         (hostname (car (last host)))
+         (hostname (cadr host))
          (prompt-bound nil))
     (if (> (length host) 2)
         (message "Invalid host string")
