@@ -20,13 +20,16 @@
 ;; Default indentation
 (setq-default indent-tabs-mode nil
               tab-width 4)
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (save-excursion
-              (goto-char (point-max))
-              (while (and (re-search-backward "^\\s-" nil t)
-                          (null (nth 8 (syntax-ppss)))))
-              (setq-local indent-tabs-mode (eql (char-after) ?\t)))))
+
+(defun rm-guess-indent-tabs-mode ()
+  "Attempts to set `indent-tabs-mode' by examining indentation at
+the end of the file."
+  (save-excursion
+    (goto-char (point-max))
+    (while (and (re-search-backward "^\\s-" nil t)
+                (null (nth 8 (syntax-ppss)))))
+    (setq-local indent-tabs-mode (eql (char-after) ?\t))))
+(add-hook 'prog-mode-hook 'rm-guess-indent-tabs-mode)
 
 ;; Temp files
 (setq auto-save-list-file-prefix "~/.emacs.d/tmp/autosaves/"
@@ -45,16 +48,18 @@
 (define-key rm-map (kbd "f") 'describe-function)
 (define-key rm-map (kbd "w") 'where-is)
 
+(defun rm-other-window-or-frame ()
+  "Switch to another frame if only one window exists."
+  (interactive)
+  (let ((try-other-frames
+         (and (> (length (frame-list)) 1)
+              (eq (length (window-list)) 1))))
+    (if try-other-frames            ; This should be unnecessary
+        (other-frame 1)             ; but I'm too lazy to fix it
+      (other-window 1))))
+
 ;; Let C-x o work across frames if there is only one window
-(define-key global-map (kbd "C-x o")
-  (lambda ()
-    (interactive)
-    (let ((try-other-frames
-           (and (> (length (frame-list)) 1)
-                (eq (length (window-list)) 1))))
-      (if try-other-frames            ; This should be unnecessary
-          (other-frame 1)             ; but I'm too lazy to fix it
-        (other-window 1)))))
+(define-key global-map (kbd "C-x o") 'rm-other-window-or-frame)
 
 (load custom-file t)
 (load "~/.emacs.d/local-configuration.el" t)
