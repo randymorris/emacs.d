@@ -219,6 +219,7 @@
 
 (use-package tramp-term
   ;; Create remote ansi-terms that automatically track pwd
+  :ensure t
   :init (defalias 'ssh 'tramp-term)
   :commands tramp-term)
 
