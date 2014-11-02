@@ -1,6 +1,6 @@
 tmp/*
-vendor/*
+elpa/*
 rm-auth.el
 local-configuration.el
 custom.el
-/local-packages.el
+local-packages.el
