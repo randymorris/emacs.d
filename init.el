@@ -1,5 +1,4 @@
-(add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/site-lisp")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;; Display
 (tool-bar-mode -1)
@@ -9,7 +8,7 @@
 
 ;; Behavior
 (setq backup-inhibited t
-      custom-file "~/.emacs.d/custom.el"
+      custom-file "~/.emacs.d/lisp/custom.el"
       mac-command-modifier 'meta
       mac-option-modifier 'super
       mouse-yank-at-point t
@@ -62,7 +61,7 @@ the end of the file."
 (define-key global-map (kbd "C-x o") 'rm-other-window-or-frame)
 
 (load custom-file t)
-(load "~/.emacs.d/local-configuration.el" t)
+(load "~/.emacs.d/lisp/local-configuration.el" t)
 
 ;; Package configuration
 (require 'package)
@@ -72,4 +71,4 @@ the end of the file."
 (package-initialize)
 (require 'rm-packages)
 
-(load "~/.emacs.d/local-packages.el" t)
+(load "~/.emacs.d/lisp/local-packages.el" t)
