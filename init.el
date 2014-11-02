@@ -65,7 +65,6 @@ the end of the file."
 
 ;; Package configuration
 (require 'package)
-(setq package-user-dir "~/.emacs.d/vendor/")
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
