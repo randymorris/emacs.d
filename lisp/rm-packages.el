@@ -170,19 +170,19 @@
 
 (use-package org-capture
   ;; Quickly make notes to reference later
-  :bind ("C-c C" . org-capture)
   :requires org
-  :config (setq org-capture-templates
-                '(("t" "Todo" entry (file org-default-notes-file)))))
+  :config (progn
+            (setq org-capture-templates
+                  '(("t" "Todo" entry (file org-default-notes-file))))
+            (define-key rm-map (kbd "c") 'org-capture)))
 
 (use-package multiple-cursors
   ;; Run commands on multiple parts of the buffer simultaniously
   :ensure t
-  :config
-  (smartrep-define-key
-      rm-map "c" '(("n" . 'mc/mark-next-like-this)
-                   ("s" . 'mc/skip-to-next-like-this)
-                   ("p" . 'mc/unmark-next-like-this))))
+  :config (smartrep-define-key global-map "C-h"
+            '(("n" . 'mc/mark-next-like-this)
+              ("s" . 'mc/skip-to-next-like-this)
+              ("p" . 'mc/unmark-next-like-this))))
 
 (use-package ack
   ;; Replacement for M-x find-grep
@@ -271,8 +271,8 @@
 (use-package flycheck
   ;; Syntax checking on the fly
   :ensure t
-  :config (smartrep-define-key
-              rm-map "e" '(("n" .'flycheck-next-error)
-                           ("p" . 'flycheck-previous-error))))
+  :config (smartrep-define-key rm-map "F"
+            '(("n" . 'flycheck-next-error)
+              ("p" . 'flycheck-previous-error))))
 
 (provide 'rm-packages)
