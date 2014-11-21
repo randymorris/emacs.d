@@ -149,10 +149,11 @@
             (setq org-startup-indented t
                   org-default-notes-file "~/org/todo.org"
                   org-archive-location "~/org/archive.org::* From %s"
-                  org-agenda-files '("~/org/todo.org")
+                  org-agenda-files '("~/org/todo.org" "~/org/meetings/")
                   org-plantuml-jar-path (expand-file-name "~/bin/plantuml.jar")
                   org-src-fontify-natively t
-                  org-todo-keywords '((type "TODO" "IN PROGRESS" "DONE"))
+                  org-todo-keywords '((sequence "TODO" "IN PROGRESS" "|" "DONE")
+                                      (sequence "|" "CANCELED"))
                   org-todo-keyword-faces '(("IN PROGRESS" . "#fff68f"))
                   org-agenda-custom-commands
                   '(("u" "Agenda and all unscheduled TODO's"
