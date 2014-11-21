@@ -184,6 +184,11 @@
               ("s" . 'mc/skip-to-next-like-this)
               ("p" . 'mc/unmark-next-like-this))))
 
+(use-package expand-region
+  ;; Incrementally mark semantic blocks of text
+  :ensure t
+  :config (define-key rm-map "e" 'er/expand-region))
+
 (use-package ack
   ;; Replacement for M-x find-grep
   :ensure t
