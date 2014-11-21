@@ -4,38 +4,34 @@
   (package-install 'use-package))
 (require 'use-package)
 
-(use-package warm-night-theme
-  ;; Decent dark theme
+(use-package tangotango-theme
+  ;; Dark theme using the Tango color palette
   :ensure t
-  :init (load-theme 'warm-night t))
-
-(use-package bubbleberry-theme
-  ;; Nice dark theme based on Light Table
-  :disabled t
-  :ensure t
-  :init (load-theme 'bubbleberry t)
-  :config (progn
-            ;; A more visible region
-            (modify-face 'region nil "#444444")
-            (modify-face 'secondary-selection nil "#303030")
-
+  :init (load-theme 'tangotango t)
+  :config (let ((gray    "#444455") (black "#888a85")
+                (red     "tomato")  (green "#8ae234")
+                (yellow  "#edd400") (blue  "#729fcf")
+                (magenta "#ad7fa8") (cyan  "pale-turquoise")
+                (white   "#eeeeec") (bg    "#2e3434"))
             (require 'whitespace)
-            (modify-face 'whitespace-space "#333344" nil)
-            (modify-face 'whitespace-tab "#333344" nil)
-            (modify-face 'whitespace-newline "#333344" nil)
+            (set-face-attribute 'whitespace-space   nil :foreground gray)
+            (set-face-attribute 'whitespace-tab     nil :foreground gray)
+            (set-face-attribute 'whitespace-newline nil :foreground gray)
 
             (require 'term)
-            (modify-face 'term-color-black "#3f3f3f" nil)
-            (modify-face 'term-color-red "#ffaaaa" nil)
-            (modify-face 'term-color-green "#b8e9cb" nil)
-            (modify-face 'term-color-yellow "#f0dfaf" nil)
-            (modify-face 'term-color-blue "#99ccee" nil)
-            (modify-face 'term-color-magenta "#dd99dd" nil)
-            (modify-face 'term-color-cyan "#0099aa" nil)
-            (modify-face 'term-color-white "#dcdccc" nil)
+            (set-face-attribute 'term-color-black   nil :foreground black)
+            (set-face-attribute 'term-color-red     nil :foreground red)
+            (set-face-attribute 'term-color-green   nil :foreground green)
+            (set-face-attribute 'term-color-yellow  nil :foreground yellow)
+            (set-face-attribute 'term-color-blue    nil :foreground blue)
+            (set-face-attribute 'term-color-magenta nil :foreground magenta)
+            (set-face-attribute 'term-color-cyan    nil :foreground cyan)
+            (set-face-attribute 'term-color-white   nil :foreground white)
 
-            (require 'org-agenda)
-            (modify-face 'org-agenda-date-weekend "#3f3f3f" nil)))
+            ;; UI Elements
+            (set-face-attribute 'fringe             nil :foreground gray :background bg)
+            (set-face-attribute 'mode-line          nil :box nil :underline gray :overline gray)
+            (set-face-attribute 'mode-line-inactive nil :box nil :underline gray :overline gray)))
 
 (use-package diminish
   ;; Remove minor-mode cruft from the status line
