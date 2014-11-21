@@ -285,4 +285,13 @@
             '(("n" . 'flycheck-next-error)
               ("p" . 'flycheck-previous-error))))
 
+(use-package sane-term
+  ;; Quickly cycle term-mode buffers
+  :ensure t
+  :init (require 'sane-term)
+  :config (progn
+            (setq sane-term-next-on-kill nil)
+            (define-key rm-map (kbd "t") 'sane-term)
+            (define-key rm-map (kbd "C-t") 'sane-term-create)))
+
 (provide 'rm-packages)
