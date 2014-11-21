@@ -189,6 +189,11 @@
   :ensure t
   :config (define-key rm-map "e" 'er/expand-region))
 
+(use-package ace-jump-mode
+  ;; Precisely place point in a few keystrokes
+  :ensure t
+  :config (define-key rm-map (kbd "C-h") 'ace-jump-char-mode))
+
 (use-package ack
   ;; Replacement for M-x find-grep
   :ensure t
