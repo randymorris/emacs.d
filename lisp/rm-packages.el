@@ -106,7 +106,10 @@
 (use-package js2-mode
   ;; A better javascript mode
   :ensure t
-  :mode "\\.js\\|\\.jsx\\'")
+  :mode "\\.js\\|\\.jsx\\'"
+  :config (progn
+            (setq-default js2-basic-offset 2)
+            (add-hook 'js2-mode-hook 'subword-mode)))
 
 (use-package jinja2-mode
   ;; Support for jinja-style templates
