@@ -42,53 +42,10 @@
   :ensure t
   :init (require 'smartrep))
 
-(use-package ido
-  ;; Nicer file/buffer/etc. switching
-  :ensure t
-  :init (ido-mode 1)
-  :config (setq ido-save-directory-list-file "~/.emacs.d/tmp/ido"
-                ido-enable-flex-matching t
-                ido-use-virtual-buffers t
-                ido-default-buffer-method 'samewindow
-                ido-default-file-method 'samewindow
-                ido-ignore-buffers (append ido-ignore-buffers
-                                           '("\\*Messages\\*" "\\*Compile-Log\\*"
-                                             "\\*Completions\\*" "\\*Help\\*"
-                                             "\\*magit-process\\*"))))
-
-(use-package flx-ido
-  ;; Flex-matching algorithm for ido
-  :ensure t
-  :init (flx-ido-mode 1)
-  :config (setq flx-ido-use-faces nil))
-
-(use-package ido-ubiquitous
-  ;; Allow ido-style completion in more places
-  :ensure t
-  :requires ido
-  :init (ido-ubiquitous-mode 1))
-
-(use-package ido-vertical-mode
-  ;; Display ido completions in a vertical list
-  :ensure t
-  :requires (ido ido-ubiquitous)
-  :init (ido-vertical-mode 1))
-
 (use-package recentf
   ;; Stores recent files for easy access
   :ensure t
   :config (setq recentf-save-file "~/.emacs.d/tmp/recent-files"))
-
-(use-package smex
-  ;; Smarter M-x with ido completion
-  :ensure t
-  :requires (recentf ido)
-  :init (smex-initialize)
-  :config (setq smex-save-file "~/.emacs.d/tmp/smex-items"
-                smex-key-advice-ignore-menu-bar t)
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands)
-         ("C-c M-x" . execute-extended-command)))
 
 (use-package term
   ;; term and ansi-term
@@ -266,8 +223,7 @@
 (use-package magit
   :ensure t
   :config (progn
-            (setq magit-completing-read-function 'magit-ido-completing-read
-                  magit-status-buffer-switch-function 'switch-to-buffer
+            (setq magit-status-buffer-switch-function 'switch-to-buffer
                   magit-save-some-buffers t
                   magit-process-popup-time 10)
             (define-key rm-map (kbd "s") 'magit-status)))
