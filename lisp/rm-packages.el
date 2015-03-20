@@ -62,11 +62,20 @@
 
 (use-package js2-mode
   ;; A better javascript mode
+  :ensure t)
+
+(use-package web-mode
   :ensure t
-  :mode "\\.js\\|\\.jsx\\'"
+  :requires js2-mode
+  :mode "\\.js\\'\\|\\.html\\'"
   :config (progn
-            (setq-default js2-basic-offset 2)
-            (add-hook 'js2-mode-hook 'subword-mode)))
+            (setq web-mode-attr-indent-offset 4)
+            (defun rm-maybe-jsx-mode ()
+              (when (string-equal "jsx" web-mode-content-type)
+                (subword-mode 1)
+                (js2-minor-mode 1)))
+            (add-hook 'web-mode-hook 'rm-maybe-jsx-mode)
+            (add-to-list 'web-mode-content-types '("jsx" . "jsx/.*\\.js\\'"))))
 
 (use-package jinja2-mode
   ;; Support for jinja-style templates

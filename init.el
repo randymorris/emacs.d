@@ -31,7 +31,7 @@
 the end of the file."
   (save-excursion
     (goto-char (point-max))
-    (while (and (re-search-backward "^\\s-" nil t)
+    (while (and (re-search-backward "^[ \t]" nil t)
                 (null (nth 8 (syntax-ppss)))))
     (setq-local indent-tabs-mode (eql (char-after) ?\t))))
 (add-hook 'prog-mode-hook 'rm-guess-indent-tabs-mode)
