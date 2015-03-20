@@ -182,7 +182,9 @@
   :config (setq tramp-default-method "ssh"
                 tramp-persistency-file-name "~/.emacs.d/tmp/tramp"
                 tramp-shell-prompt-pattern
-                "\\(?:^\\|\\)[^]#$%>\n]*#?[]#$%>]+ *\\(\\[[0-9;]*[a-zA-Z] *\\)*"))
+                "\\(?:^\\|\\)[^]#$%>\n]*#?[]#$%>]+ *\\(\\[[0-9;]*[a-zA-Z] *\\)*"
+                tramp-password-prompt-regexp
+                "^.*\\([pP]assword\\|[pP]assphrase\\|PASSCODE\\).*:"))
 
 (use-package tramp-term
   ;; Create remote ansi-terms that automatically track pwd
