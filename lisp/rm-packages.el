@@ -4,34 +4,34 @@
   (package-install 'use-package))
 (require 'use-package)
 
-(use-package tangotango-theme
-  ;; Dark theme using the Tango color palette
+(use-package sublime-themes
+  ;; Needed for wilson theme
   :ensure t
-  :init (load-theme 'tangotango t)
-  :config (let ((gray    "#444455") (black "#888a85")
-                (red     "tomato")  (green "#8ae234")
-                (yellow  "#edd400") (blue  "#729fcf")
-                (magenta "#ad7fa8") (cyan  "pale-turquoise")
-                (white   "#eeeeec") (bg    "#2e3434"))
+  :init (load-theme 'wilson t)
+  :config (let ((fg "#333333") (bg "#222222"))
+            (set-face-attribute 'default nil :height 140)
+
+            (set-face-attribute 'region nil :background "#cfb980")
+
+            ;; whitespace
             (require 'whitespace)
-            (set-face-attribute 'whitespace-space   nil :foreground gray)
-            (set-face-attribute 'whitespace-tab     nil :foreground gray)
-            (set-face-attribute 'whitespace-newline nil :foreground gray)
+            (set-face-attribute 'whitespace-newline nil :background bg :foreground fg)
+            (set-face-attribute 'whitespace-space nil :background bg :foreground fg)
+            (set-face-attribute 'whitespace-tab nil :background bg :foreground fg)
 
             (require 'term)
-            (set-face-attribute 'term-color-black   nil :foreground black)
-            (set-face-attribute 'term-color-red     nil :foreground red)
-            (set-face-attribute 'term-color-green   nil :foreground green)
-            (set-face-attribute 'term-color-yellow  nil :foreground yellow)
-            (set-face-attribute 'term-color-blue    nil :foreground blue)
-            (set-face-attribute 'term-color-magenta nil :foreground magenta)
-            (set-face-attribute 'term-color-cyan    nil :foreground cyan)
-            (set-face-attribute 'term-color-white   nil :foreground white)
+            (set-face-attribute 'term-color-black   nil :foreground "#888a85")
+            (set-face-attribute 'term-color-red     nil :foreground "tomato")
+            (set-face-attribute 'term-color-green   nil :foreground "#8ae234")
+            (set-face-attribute 'term-color-yellow  nil :foreground "#edd400")
+            (set-face-attribute 'term-color-blue    nil :foreground "#729fcf")
+            (set-face-attribute 'term-color-magenta nil :foreground "#ad7fa8")
+            (set-face-attribute 'term-color-cyan    nil :foreground "pale-turquoise")
+            (set-face-attribute 'term-color-white   nil :foreground "#eeeeec")
 
-            ;; UI Elements
-            (set-face-attribute 'fringe             nil :foreground gray :background bg)
-            (set-face-attribute 'mode-line          nil :box nil :underline gray :overline gray)
-            (set-face-attribute 'mode-line-inactive nil :box nil :underline gray :overline gray)))
+            ;; mode-line
+            (set-face-attribute 'mode-line nil :background "#303030" :foreground "#cfb980" :overline "#44443c" :underline "#44443c")
+            (set-face-attribute 'mode-line-buffer-id nil :weight 'normal)))
 
 (use-package diminish
   ;; Remove minor-mode cruft from the status line
