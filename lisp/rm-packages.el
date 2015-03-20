@@ -206,20 +206,6 @@
   ;; Extensive list of completion methods
   :bind (("M-/" . hippie-expand)))
 
-(use-package hideshow
-  ;; Code folding
-  :diminish hs-minor-mode
-  :init (progn
-          (defun rm-hs-toggle (arg)
-            "Simple single-key folding"
-            (interactive "p")
-            (call-interactively
-             (cond ((>= arg 16) 'hs-show-all)
-                   ((>= arg 4) 'hs-hide-all)
-                   (t 'hs-toggle-hiding))))
-          (add-hook 'prog-mode-hook (lambda () (hs-minor-mode 1))))
-  :bind ("C-z" . rm-hs-toggle))
-
 (use-package magit
   :ensure t
   :config (progn
