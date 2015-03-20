@@ -21,6 +21,7 @@
 
 ;; Platform specific settings
 (when (string-equal system-type "darwin")
+  (setenv "PATH" "/usr/local/bin:$PATH" t)
   (setq mac-command-modifier 'meta
         mac-option-modifier 'super)
   (global-set-key (kbd "M-q") 'save-buffers-kill-emacs))
