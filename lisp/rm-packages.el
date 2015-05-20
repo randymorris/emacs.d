@@ -56,6 +56,8 @@
                 (if buffer
                     (switch-to-buffer buffer)
                   (ansi-term (getenv "SHELL")))))
+            ;; temp hack until emacs:beaab89896 is reverted
+            (setenv "EMACS" (format "%s (term:%s)" emacs-version term-protocol-version))
             (define-key rm-map (kbd "t") 'rm-ansi-term)
             (define-key term-raw-map (kbd "C-h") nil)
             (define-key term-raw-map (kbd "M-x") nil)))
