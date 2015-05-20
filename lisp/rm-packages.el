@@ -7,31 +7,9 @@
 (use-package sublime-themes
   ;; Needed for wilson theme
   :ensure t
-  :init (load-theme 'wilson t)
-  :config (let ((fg "#333333") (bg "#222222"))
-            (set-face-attribute 'default nil :height 140)
-
-            (set-face-attribute 'region nil :background "#cfb980")
-
-            ;; whitespace
-            (require 'whitespace)
-            (set-face-attribute 'whitespace-newline nil :background bg :foreground fg)
-            (set-face-attribute 'whitespace-space nil :background bg :foreground fg)
-            (set-face-attribute 'whitespace-tab nil :background bg :foreground fg)
-
-            (require 'term)
-            (set-face-attribute 'term-color-black   nil :foreground "#888a85")
-            (set-face-attribute 'term-color-red     nil :foreground "tomato")
-            (set-face-attribute 'term-color-green   nil :foreground "#8ae234")
-            (set-face-attribute 'term-color-yellow  nil :foreground "#edd400")
-            (set-face-attribute 'term-color-blue    nil :foreground "#729fcf")
-            (set-face-attribute 'term-color-magenta nil :foreground "#ad7fa8")
-            (set-face-attribute 'term-color-cyan    nil :foreground "pale-turquoise")
-            (set-face-attribute 'term-color-white   nil :foreground "#eeeeec")
-
-            ;; mode-line
-            (set-face-attribute 'mode-line nil :background "#303030" :foreground "#cfb980" :overline "#44443c" :underline "#44443c")
-            (set-face-attribute 'mode-line-buffer-id nil :weight 'normal)))
+  :init (progn
+          (load-theme 'wilson t)
+          (load-theme 'rm-wilson t)))
 
 (use-package diminish
   ;; Remove minor-mode cruft from the status line
