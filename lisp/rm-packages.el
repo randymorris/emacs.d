@@ -224,7 +224,8 @@
   :config (progn
             (setq magit-status-buffer-switch-function 'switch-to-buffer
                   magit-save-some-buffers t
-                  magit-process-popup-time 10)
+                  magit-process-popup-time 10
+                  magit-last-seen-setup-instructions "1.4.0")
             (define-key rm-map (kbd "s") 'magit-status)))
 
 (use-package magit-svn
