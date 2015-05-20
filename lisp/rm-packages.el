@@ -64,7 +64,9 @@
 
 (use-package js2-mode
   ;; A better javascript mode
-  :ensure t)
+  :ensure t
+  :config (setq js2-global-externs '("require" "module" "jest" "jasmine"
+                                     "it" "expect" "describe" "beforeEach")))
 
 (use-package web-mode
   :ensure t
