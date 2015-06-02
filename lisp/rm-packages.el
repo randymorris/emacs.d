@@ -233,4 +233,8 @@
             (define-key rm-map (kbd "t") 'sane-term)
             (define-key rm-map (kbd "C-t") 'sane-term-create)))
 
+(use-package elec-pair
+  ;; Auto-insert matching pairs
+  :init (electric-pair-mode t))
+
 (provide 'rm-packages)
