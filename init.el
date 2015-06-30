@@ -23,8 +23,8 @@
 (when (string-equal system-type "darwin")
   (setenv "PATH" "/usr/local/bin:$PATH" t)
   (setq mac-command-modifier 'meta
-        mac-option-modifier 'super)
-  (global-set-key (kbd "M-q") 'delete-frame))
+        mac-option-modifier 'super))
+
 
 (defun rm-guess-indent-tabs-mode ()
   "Attempts to set `indent-tabs-mode' by examining indentation at
