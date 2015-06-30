@@ -238,4 +238,50 @@
   ;; Auto-insert matching pairs
   :init (electric-pair-mode t))
 
+(use-package helm
+  ;; Alternate completing-read implementaion + helper functions for
+  ;; opening files and buffers.
+  :ensure t
+  :diminish ""
+  :init (progn
+          (helm-mode 1)
+          (define-key ctl-x-map (kbd "C-f") 'helm-find-files)
+          (define-key ctl-x-map (kbd "b") 'helm-mini)
+          (define-key global-map (kbd "M-x") 'helm-M-x))
+  :config (progn
+            (define-key helm-map (kbd "s-SPC") 'helm-toggle-visible-mark)
+
+            (defun helm-hide-minibuffer-maybe ()
+              (when (with-helm-buffer helm-echo-input-in-header-line)
+                (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+                  (overlay-put ov 'window (selected-window))
+                  (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
+                                          `(:background ,bg-color :foreground ,bg-color)))
+                  (setq-local cursor-type nil))))
+
+            (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
+
+            (setq helm-display-header-line nil
+                  helm-echo-input-in-header-line t
+                  helm-truncate-lines t
+                  helm-autoresize-max-height 30
+                  helm-autoresize-min-height 30
+                  helm-M-x-fuzzy-match t
+                  helm-buffers-fuzzy-matching t
+                  helm-recentf-fuzzy-match t
+                  helm-ff-skip-boring-files t
+                  helm-ff-auto-update-initial-value t
+                  helm-boring-buffer-regexp-list
+                  '("\\` "           "\\*helm"          "\\*helm-mode"
+                    "\\*Echo Area"   "\\*Minibuf"       "\\*Messages"
+                    "\\*Compile-Log" "\\*Completions"   "\\*Help"
+                    "\\*Buffer List" "\\*magit-process" "\\*tramp"))
+            (helm-autoresize-mode 1)))
+
+(use-package helm-projectile
+  ;; Projectile integration for helm
+  :ensure t
+  :requires helm
+  :init (define-key rm-map (kbd "C-f") 'helm-projectile))
+
 (provide 'rm-packages)
