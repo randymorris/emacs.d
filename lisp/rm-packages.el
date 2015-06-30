@@ -171,6 +171,7 @@
   ;; Transparent Remote Access
   :ensure t
   :config (setq tramp-default-method "ssh"
+                tramp-use-ssh-controlmaster-options nil
                 tramp-persistency-file-name "~/.emacs.d/tmp/tramp"
                 tramp-shell-prompt-pattern
                 "\\(?:^\\|\\)[^]#$%>\n]*#?[]#$%>]+ *\\(\\[[0-9;]*[a-zA-Z] *\\)*"
