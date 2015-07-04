@@ -214,7 +214,7 @@
   :init (progn
           (require 'magit-svn)
           (defun init-magit-svn-mode-maybe ()
-            (if (magit-svn-get-ref-info)
+            (if (magit-svn-get-ref)
                 (magit-svn-mode)))
           (add-hook 'magit-mode-hook 'init-magit-svn-mode-maybe)))
 
