@@ -217,9 +217,11 @@
 (use-package flycheck
   ;; Syntax checking on the fly
   :ensure t
-  :config (smartrep-define-key rm-map "F"
-            '(("n" . 'flycheck-next-error)
-              ("p" . 'flycheck-previous-error))))
+  :config (progn
+            (smartrep-define-key rm-map "F"
+              '(("n" . 'flycheck-next-error)
+                ("p" . 'flycheck-previous-error)))
+            (setq flycheck-flake8rc "~/.config/flake8rc")))
 
 (use-package sane-term
   ;; Quickly cycle term-mode buffers
