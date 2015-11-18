@@ -23,7 +23,7 @@
    'rm-wilson
 
    ;; Region
-   `(region ((t (:background ,wilson-stained-yellow))))
+   `(region ((t (:background ,wilson-stained-yellow :foreground ,wilson-darker-gray))))
 
    ;; Mode line
    `(mode-line ((t :background ,rm-wilson-muted :foreground ,wilson-stained-yellow :overline ,wilson-flying-boots :underline ,wilson-flying-boots)))
@@ -35,10 +35,10 @@
    `(whitespace-space ((t (:foreground ,rm-wilson-muted :background ,wilson-darker-flying-boots))))
 
    ;; Term
-   `(term-color-black ((t (:foreground "#888a85"))))
-   `(term-color-red ((t (:foreground "tomato"))))
-   `(term-color-green ((t (:foreground "#8ae234"))))
-   `(term-color-yellow ((t (:foreground "#edd400"))))
+   `(term-color-black ((t (:foreground ,wilson-darker-gray))))
+   `(term-color-red ((t (:foreground ,wilson-stained-orange))))
+   `(term-color-green ((t (:foreground ,wilson-spring-grass))))
+   `(term-color-yellow ((t (:foreground ,wilson-stained-yellow))))
    `(term-color-blue ((t (:foreground "#729fcf"))))
    `(term-color-magenta((t (:foreground "#ad7fa8"))))
    `(term-color-cyan ((t (:foreground "turquoise"))))
