@@ -212,13 +212,7 @@
             (define-key rm-map (kbd "s") 'rm-magit-status)))
 
 (use-package magit-svn
-  :ensure t
-  :init (progn
-          (require 'magit-svn)
-          (defun init-magit-svn-mode-maybe ()
-            (if (magit-svn-get-ref)
-                (magit-svn-mode)))
-          (add-hook 'magit-mode-hook 'init-magit-svn-mode-maybe)))
+  :ensure t)
 
 (use-package flycheck
   ;; Syntax checking on the fly
