@@ -144,10 +144,19 @@
   ;; Replacement for M-x find-grep
   :ensure t
   :init (defalias 'ag 'ack)
-  :config (setq ack-command
-                (concat (cond ((executable-find "ag"))
-                              ((executable-find "ack-grep"))
-                              ((executable-find "ack"))) " ")))
+  :config (progn
+            (defun rm-ack-symbol-in-project ()
+              (interactive)
+              (let ((target (thing-at-point 'symbol t))
+                    (root (ack-default-directory 4)))
+                (ack (format "%s %s %s" ack-command target root))))
+
+            (define-key rm-map (kbd "a") 'rm-ack-symbol-in-project)
+
+            (setq ack-command
+                  (concat (cond ((executable-find "ag"))
+                                ((executable-find "ack-grep"))
+                                ((executable-find "ack"))) " "))))
 
 (use-package ps-print
   ;; Pretty printing
