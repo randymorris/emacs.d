@@ -190,7 +190,7 @@
 
 (use-package saveplace
   ;; Restore point position when revisiting a file
-  :init (require 'saveplace)
+  :init (save-place-mode t)
   :config (progn
             (setq-default save-place t)
             (setq save-place-file "~/.emacs.d/tmp/places")))
