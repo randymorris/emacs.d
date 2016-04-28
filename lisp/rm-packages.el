@@ -57,12 +57,8 @@
                 (subword-mode 1)
                 (js2-minor-mode 1)))
             (add-hook 'web-mode-hook 'rm-maybe-jsx-mode)
+            (add-to-list 'web-mode-engine-file-regexps '("django" . "templates/.*\\.html\\'"))
             (add-to-list 'web-mode-content-types '("jsx" . "jsx/.*\\.js\\'"))))
-
-(use-package jinja2-mode
-  ;; Support for jinja-style templates
-  :ensure t
-  :mode "\\.jinja\\|\\.html\\'")
 
 (use-package python
   ;; fgallina's python mode
