@@ -223,10 +223,10 @@
   ;; Syntax checking on the fly
   :ensure t
   :config (progn
+            (flycheck-add-next-checker 'python-flake8 'python-pylint)
             (smartrep-define-key rm-map "F"
               '(("n" . 'flycheck-next-error)
-                ("p" . 'flycheck-previous-error)))
-            (setq flycheck-flake8rc "~/.config/flake8rc")))
+                ("p" . 'flycheck-previous-error)))))
 
 (use-package sane-term
   ;; Quickly cycle term-mode buffers

@@ -18,6 +18,9 @@
       (wilson-darker-stained-orange "#A56F4B")
       (wilson-stained-yellow        "#CFB980")
       (wilson-darker-stained-yellow "#B9A572")
+      (rm-wilson-error              "#F56F4B")
+      (rm-wilson-warning            "#F5F54B")
+      (rm-wilson-info               "#4b6F95")
       (rm-wilson-muted              "#333333"))
   (custom-theme-set-faces
    'rm-wilson
@@ -60,7 +63,14 @@
    '(helm-buffer-saved-out ((t nil)))
    '(helm-separator ((t nil)))
    '(helm-header ((t nil)))
-   '(helm-prefarg ((t nil)))))
+   '(helm-prefarg ((t nil)))
+
+   ;; Flycheck
+   `(flycheck-fringe-error ((t (:foreground ,rm-wilson-error))))
+   `(flycheck-fringe-warning ((t (:foreground ,rm-wilson-warning))))
+   `(flycheck-fringe-info ((t (:foreground ,rm-wilson-info))))
+   ))
+
 
 ;;;###autoload
 (when load-file-name
