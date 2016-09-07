@@ -47,6 +47,14 @@
    `(term-color-cyan ((t (:foreground "turquoise"))))
    `(term-color-white ((t (:foreground "#eeeeec"))))
 
+   ;; Ido(-vertical)
+   `(ido-vertical-first-match-face ((t nil)))
+   `(ido-vertical-only-match-face ((t nil)))
+   `(ido-vertical-match-face ((t (:inherit font-lock-builtin-face))))
+   `(ido-virtual ((t (:foreground ,wilson-oilstained-eggshell))))
+   `(ido-subdir ((t (:foreground ,rm-wilson-info))))
+
+
    ;; Helm
    `(helm-buffer-directory ((t (:foreground ,wilson-stained-orange))))
    `(helm-ff-directory ((t (:foreground ,wilson-stained-orange))))
