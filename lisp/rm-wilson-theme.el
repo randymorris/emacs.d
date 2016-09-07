@@ -77,7 +77,11 @@
    `(flycheck-fringe-error ((t (:foreground ,rm-wilson-error))))
    `(flycheck-fringe-warning ((t (:foreground ,rm-wilson-warning))))
    `(flycheck-fringe-info ((t (:foreground ,rm-wilson-info))))
+
+   ;; Ivy
+   `(ivy-current-match ((t (:background ,wilson-stained-yellow :foreground ,wilson-darker-flying-boots))))
    ))
+
 
 
 ;;;###autoload
