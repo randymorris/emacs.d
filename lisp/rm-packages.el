@@ -83,7 +83,7 @@
                        space-before-tab newline
                        space-mark tab-mark newline-mark)
                 whitespace-display-mappings
-                '((space-mark ?\s [?·])
+                '((space-mark ?\s [?␣])
                   (newline-mark ?\n [?⏎ ?\n])
                   (tab-mark ?\t [?⇥ ?\t]))))
 
