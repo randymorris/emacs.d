@@ -49,15 +49,17 @@
 (use-package web-mode
   :ensure t
   :requires js2-mode
-  :mode "\\.js\\'\\|\\.html\\'"
+  :mode "\\.jsx?\\'\\|\\.html\\'"
   :config (progn
-            (setq web-mode-attr-indent-offset 4)
+            (setq web-mode-attr-indent-offset 4
+                  web-mode-code-indent-offset 2
+                  web-mode-markup-indent-offset 2)
             (defun rm-maybe-jsx-mode ()
               (when (string-equal "jsx" web-mode-content-type)
-                (subword-mode 1)
-                (js2-minor-mode 1)))
+                (subword-mode 1)))
             (add-hook 'web-mode-hook 'rm-maybe-jsx-mode)
             (add-to-list 'web-mode-engine-file-regexps '("django" . "templates/.*\\.html\\'"))
+            (add-to-list 'web-mode-content-types '("jsx" . ".*\\.jsx?\\'"))
             (add-to-list 'web-mode-content-types '("jsx" . "jsx/.*\\.js\\'"))))
 
 (use-package python
