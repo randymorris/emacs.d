@@ -66,6 +66,23 @@ the end of the file."
 ;; Let C-x o work across frames if there is only one window
 (define-key global-map (kbd "C-x o") 'rm-other-window-or-frame)
 
+
+(defun rm-switch-to-scratch-buffer (reset-scratch-buffer)
+  "Switch to the *scratch* buffer.  If no *scratch* buffer exists, create one.
+
+If a prefix arg was provided or the *scratch* buffer did not
+exist, also reset the scratch buffer to its initial state."
+  (interactive "P")
+  (switch-to-buffer (get-buffer-create "*scratch*"))
+  (when (or reset-scratch-buffer
+            (eq (buffer-string) ""))
+    (erase-buffer)
+    (insert (substitute-command-keys initial-scratch-message))))
+
+;; Quickly access the *scratch* buffer
+(define-key rm-map (kbd "x") 'rm-switch-to-scratch-buffer)
+
+
 (load custom-file t)
 (load "~/.emacs.d/lisp/local-configuration.el" t)
 
