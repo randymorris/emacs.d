@@ -21,7 +21,7 @@
       (rm-wilson-error              "#F56F4B")
       (rm-wilson-warning            "#F5F54B")
       (rm-wilson-info               "#4b6F95")
-      (rm-wilson-muted              "#333333"))
+      (rm-wilson-muted              "#2a2a2a"))
   (custom-theme-set-faces
    'rm-wilson
 
@@ -80,6 +80,10 @@
 
    ;; Ivy
    `(ivy-current-match ((t (:background ,wilson-stained-yellow :foreground ,wilson-darker-flying-boots))))
+
+   ;; Avy
+   `(avy-lead-face-0 ((t (:background ,wilson-stained-yellow :foreground ,wilson-darker-flying-boots))))
+   `(avy-lead-face ((t (:background ,wilson-darker-stained-yellow :foreground ,wilson-darker-flying-boots))))
    ))
 
 

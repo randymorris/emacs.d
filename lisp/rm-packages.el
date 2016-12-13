@@ -252,12 +252,20 @@
   ;; Better completion than ido, simliar to ido-vertical-mode
   :ensure t
   :requires flx
+  :diminish ivy-mode
   :init (ivy-mode 1)
   :config (progn (setq ivy-count-format ""
                        ivy-display-style nil
                        ivy-minibuffer-faces nil
+                       ivy-use-virtual-buffers t
                        ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
                  (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)))
+
+(use-package counsel
+  :ensure t
+  :requires ivy
+  :bind (("M-x" . counsel-M-x))
+  :config (setq smex-save-file "~/.emacs.d/tmp/smex-items"))
 
 (use-package projectile
   ;; Project-specific navigation
@@ -266,5 +274,13 @@
   :config (progn
             (setq projectile-completion-system 'ivy)
             (define-key 'rm-map (kbd "C-f") 'projectile-find-file)))
+
+(use-package avy
+  :ensure t
+  :diminish avy-mode
+  :bind (:map rm-map
+         ("l" . avy-goto-line)
+         ("c" . avy-goto-char)
+         ("w" . avy-goto-word-or-subword-1)))
 
 (provide 'rm-packages)
