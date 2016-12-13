@@ -228,7 +228,6 @@
   ;; Syntax checking on the fly
   :ensure t
   :config (progn
-            (flycheck-add-next-checker 'python-flake8 'python-pylint)
             (smartrep-define-key rm-map "F"
               '(("n" . 'flycheck-next-error)
                 ("p" . 'flycheck-previous-error)))))
