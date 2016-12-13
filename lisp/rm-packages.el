@@ -58,6 +58,7 @@
               (when (string-equal "jsx" web-mode-content-type)
                 (subword-mode 1)))
             (add-hook 'web-mode-hook 'rm-maybe-jsx-mode)
+            (add-hook 'web-mode-hook (lambda () (whitespace-mode -1)))
             (add-to-list 'web-mode-engine-file-regexps '("django" . "templates/.*\\.html\\'"))
             (add-to-list 'web-mode-content-types '("jsx" . ".*\\.jsx?\\'"))
             (add-to-list 'web-mode-content-types '("jsx" . "jsx/.*\\.js\\'"))))
