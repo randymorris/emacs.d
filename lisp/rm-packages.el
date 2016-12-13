@@ -129,10 +129,12 @@
 (use-package multiple-cursors
   ;; Run commands on multiple parts of the buffer simultaniously
   :ensure t
-  :config (smartrep-define-key global-map "C-h"
-            '(("n" . 'mc/mark-next-like-this)
-              ("s" . 'mc/skip-to-next-like-this)
-              ("p" . 'mc/unmark-next-like-this))))
+  :config (progn
+            (smartrep-define-key global-map "C-h"
+              '(("n" . 'mc/mark-next-like-this)
+                ("s" . 'mc/skip-to-next-like-this)
+                ("p" . 'mc/unmark-next-like-this)))
+            (setq mc/list-file "~/.emacs/tmp/mc-lists.el")))
 
 (use-package expand-region
   ;; Incrementally mark semantic blocks of text
