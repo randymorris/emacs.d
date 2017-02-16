@@ -15,10 +15,10 @@
   ;; Remove minor-mode cruft from the status line
   :ensure t)
 
-(use-package smartrep
+(use-package hydra
   ;; Easy repeating keybinds
   :ensure t
-  :init (require 'smartrep))
+  :init (require 'hydra))
 
 (use-package recentf
   ;; Stores recent files for easy access
@@ -112,12 +112,27 @@
 (use-package multiple-cursors
   ;; Run commands on multiple parts of the buffer simultaniously
   :ensure t
-  :config (progn
-            (smartrep-define-key global-map "C-h"
-              '(("n" . 'mc/mark-next-like-this)
-                ("s" . 'mc/skip-to-next-like-this)
-                ("p" . 'mc/unmark-next-like-this)))
-            (setq mc/list-file "~/.emacs/tmp/mc-lists.el")))
+  :requires hydra
+  :init (setq mc/list-file "~/.emacs.d/tmp/mc-lists.el")
+  :config (defhydra rm-multiple-cursors-hydra (rm-map "n" :hint nil)
+              "
+     ^Up^            ^Down^        ^Other^
+----------------------------------------------
+[_p_]   Next    [_n_]   Next    [_l_] Edit lines
+[_P_]   Skip    [_N_]   Skip    [_a_] Mark all
+[_M-p_] Unmark  [_M-n_] Unmark  [_r_] Mark by regexp
+^ ^             ^ ^             [_q_] Quit
+"
+              ("l" mc/edit-lines :exit t)
+              ("a" mc/mark-all-like-this :exit t)
+              ("n" mc/mark-next-like-this)
+              ("N" mc/skip-to-next-like-this)
+              ("M-n" mc/unmark-next-like-this)
+              ("p" mc/mark-previous-like-this)
+              ("P" mc/skip-to-previous-like-this)
+              ("M-p" mc/unmark-previous-like-this)
+              ("r" mc/mark-all-in-region-regexp :exit t)
+              ("q" nil)))
 
 (use-package expand-region
   ;; Incrementally mark semantic blocks of text
@@ -208,10 +223,10 @@
 (use-package flycheck
   ;; Syntax checking on the fly
   :ensure t
-  :config (progn
-            (smartrep-define-key rm-map "F"
-              '(("n" . 'flycheck-next-error)
-                ("p" . 'flycheck-previous-error)))))
+  :requires hydra
+  :config (defhydra rm-flycheck-hydra (rm-map "F") "Flycheck"
+            ("n" flycheck-next-error "Next")
+            ("p" flycheck-previous-error "Previous")))
 
 (use-package sane-term
   ;; Quickly cycle term-mode buffers
