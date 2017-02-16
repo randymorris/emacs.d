@@ -118,14 +118,6 @@
 
             (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))))
 
-(use-package org-capture
-  ;; Quickly make notes to reference later
-  :requires org
-  :config (progn
-            (setq org-capture-templates
-                  '(("t" "Todo" entry (file org-default-notes-file))))
-            (define-key rm-map (kbd "c") 'org-capture)))
-
 (use-package multiple-cursors
   ;; Run commands on multiple parts of the buffer simultaniously
   :ensure t
@@ -284,42 +276,5 @@
          ("l" . avy-goto-line)
          ("c" . avy-goto-char)
          ("w" . avy-goto-word-or-subword-1)))
-
-(use-package rcirc
-  :config (progn
-            (setq rcirc-omit-responses '("JOIN" "PART" "QUIT" "NICK" "AWAY")
-                  rcirc-fill-column 'frame-width
-                  rcirc-buffer-maximum-lines 250)
-            (add-hook 'rcirc-mode-hook '(lambda ()
-                                          (rcirc-omit-mode)
-                                          (rcirc-track-minor-mode)
-                                          (flyspell-mode 1)))
-
-            (defun rm-rcirc-custom-nick-format (sender response)
-              "Change the way nicks are formatted in rcirc buffers."
-              (goto-char (point-min))
-              (string-match "^..:.. <\\([^>]+\\)>" (buffer-string))
-              (let* ((nick (match-string 1 (buffer-string))))
-                (while (search-forward (format "<%s>" nick) nil t)
-                  (replace-match (format "%s %s" nick (string #x2237)) nil t))))
-
-            (add-to-list 'rcirc-markup-text-functions 'rm-rcirc-custom-nick-format)))
-
-            (defvar rm-rcirc-max-nick-length 10
-              "Maxmimum nick length used for right-aligned nicks.")
-
-            (defun rm-rcirc-right-align-nicks (sender response)
-              "Right align nicks, truncating at `rm-rcirc-max-nick-length'."
-              (goto-char (point-min))
-              (string-match "^..:.. <\\([^>]+\\)>" (buffer-string))
-              (let* ((length rm-rcirc-max-nick-length)
-                     (nick (match-string 1 (buffer-string)))
-                     (nick* (format (format "%%%ds" length) nick))
-                     (nick* (truncate-string-to-width nick* length)))
-                (while (search-forward (format "<%s>" nick) nil t)
-                  (replace-match (format "<%s>" nick*) nil t))))
-
-            (add-to-list 'rcirc-markup-text-functions 'rm-rcirc-right-align-nicks)
-
 
 (provide 'rm-packages)
