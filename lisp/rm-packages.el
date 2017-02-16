@@ -27,18 +27,9 @@
 
 (use-package term
   ;; term and ansi-term
-  :config (progn
-            (defun rm-ansi-term ()
-              (interactive)
-              (let ((buffer (get-buffer "*ansi-term*")))
-                (if buffer
-                    (switch-to-buffer buffer)
-                  (ansi-term (getenv "SHELL")))))
-            ;; temp hack until emacs:beaab89896 is reverted
-            (setenv "EMACS" (format "%s (term:%s)" emacs-version term-protocol-version))
-            (define-key rm-map (kbd "t") 'rm-ansi-term)
-            (define-key term-raw-map (kbd "C-h") nil)
-            (define-key term-raw-map (kbd "M-x") nil)))
+  :bind (:map term-raw-map
+              ("C-h" . nil)
+              ("M-x" . nil)))
 
 (use-package js2-mode
   ;; A better javascript mode
@@ -67,8 +58,8 @@
   ;; fgallina's python mode
   :ensure t
   :mode ("\\.py\\'" . python-mode)
+  :bind (:map python-mode-map ("RET" . newline-and-indent))
   :config (progn
-            (define-key python-mode-map (kbd "RET") 'newline-and-indent)
             (defun rm-fix-python-tab-width ()
               (setq tab-width 4
                     python-indent-offset 4))
@@ -131,20 +122,19 @@
 (use-package expand-region
   ;; Incrementally mark semantic blocks of text
   :ensure t
-  :config (define-key rm-map "e" 'er/expand-region))
+  :bind (:map rm-map ("e" . er/expand-region)))
 
 (use-package ack
   ;; Replacement for M-x find-grep
   :ensure t
   :init (defalias 'ag 'ack)
+  :bind (:map rm-map ("a" . rm-ack-symbol-in-project))
   :config (progn
             (defun rm-ack-symbol-in-project ()
               (interactive)
               (let ((target (thing-at-point 'symbol t))
                     (root (ack-default-directory 4)))
                 (ack (format "%s %s %s" ack-command target root))))
-
-            (define-key rm-map (kbd "a") 'rm-ack-symbol-in-project)
 
             (setq ack-command
                   (concat (cond ((executable-find "ag"))
@@ -199,6 +189,7 @@
 
 (use-package magit
   :ensure t
+  :bind (:map rm-map ("s" . rm-magit-status))
   :config (progn
             (setq magit-status-buffer-switch-function 'switch-to-buffer
                   magit-save-some-buffers t
@@ -209,9 +200,7 @@
             (defun rm-magit-status ()
               (interactive)
               (magit-status)
-              (delete-other-windows))
-
-            (define-key rm-map (kbd "s") 'rm-magit-status)))
+              (delete-other-windows))))
 
 (use-package magit-svn
   :ensure t)
@@ -228,10 +217,10 @@
   ;; Quickly cycle term-mode buffers
   :ensure t
   :init (require 'sane-term)
-  :config (progn
-            (setq sane-term-next-on-kill nil)
-            (define-key rm-map (kbd "t") 'sane-term)
-            (define-key rm-map (kbd "C-t") 'sane-term-create)))
+  :bind (:map rm-map
+              ("t" . sane-term)
+              ("C-t" . sane-term-create))
+  :config (setq sane-term-next-on-kill nil))
 
 (use-package elec-pair
   ;; Auto-insert matching pairs
@@ -248,12 +237,12 @@
   :requires flx
   :diminish ivy-mode
   :init (ivy-mode 1)
-  :config (progn (setq ivy-count-format ""
-                       ivy-display-style nil
-                       ivy-minibuffer-faces nil
-                       ivy-use-virtual-buffers t
-                       ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
-                 (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)))
+  :bind (:map ivy-minibuffer-map ("C-m" . ivy-alt-done))
+  :config (setq ivy-count-format ""
+                ivy-display-style nil
+                ivy-minibuffer-faces nil
+                ivy-use-virtual-buffers t
+                ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
 
 (use-package counsel
   :ensure t
@@ -265,16 +254,15 @@
   ;; Project-specific navigation
   :ensure t
   :requires ivy
-  :config (progn
-            (setq projectile-completion-system 'ivy)
-            (define-key 'rm-map (kbd "C-f") 'projectile-find-file)))
+  :bind (:map rm-map ("C-f" . projectile-find-file))
+  :config (setq projectile-completion-system 'ivy))
 
 (use-package avy
   :ensure t
   :diminish avy-mode
   :bind (:map rm-map
-         ("l" . avy-goto-line)
-         ("c" . avy-goto-char)
-         ("w" . avy-goto-word-or-subword-1)))
+              ("l" . avy-goto-line)
+              ("c" . avy-goto-char)
+              ("w" . avy-goto-word-or-subword-1)))
 
 (provide 'rm-packages)
