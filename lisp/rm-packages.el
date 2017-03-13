@@ -147,7 +147,9 @@
   :config (progn
             (defun rm-ack-symbol-in-project ()
               (interactive)
-              (let ((target (thing-at-point 'symbol t))
+              (let ((target (if (use-region-p)
+                                (buffer-substring-no-properties (region-beginning) (region-end))
+                              (thing-at-point 'symbol t)))
                     (root (ack-default-directory 4)))
                 (ack (format "%s %s %s" ack-command target root))))
 
