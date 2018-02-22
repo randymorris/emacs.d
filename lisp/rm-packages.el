@@ -308,4 +308,11 @@
               ("c" . avy-goto-char)
               ("w" . avy-goto-word-or-subword-1)))
 
+(use-package dumb-jump
+  :ensure t
+  :bind (:map rm-map
+              ("." . dumb-jump-go)
+              ("," . dumb-jump-back))
+  :config (setq dumb-jump-selector 'ivy))
+
 (provide 'rm-packages)
