@@ -138,7 +138,15 @@
 (use-package expand-region
   ;; Incrementally mark semantic blocks of text
   :ensure t
-  :bind (:map rm-map ("e" . er/expand-region)))
+  :bind (:map rm-map ("e" . rm-expand-region-hydra/body))
+  :config (progn
+            (setq expand-region-fast-keys-enabled nil)
+            (defhydra rm-expand-region-hydra
+              (:body-pre (er/expand-region 1))
+              "Expand region"
+              ("e" er/expand-region)
+              ("r" er/contract-region)
+              ("q" nil))))
 
 (use-package ack
   ;; Replacement for M-x find-grep
@@ -227,7 +235,10 @@
   ;; Syntax checking on the fly
   :ensure t
   :requires hydra
-  :config (defhydra rm-flycheck-hydra (rm-map "F") "Flycheck"
+  :bind (:map rm-map ("F" . rm-flycheck-hydra/body))
+  :config (defhydra rm-flycheck-hydra
+            (:body-pre (flycheck-next-error 1))
+            "Flycheck"
             ("n" flycheck-next-error "Next")
             ("p" flycheck-previous-error "Previous")))
 
@@ -261,6 +272,10 @@
                 ivy-minibuffer-faces nil
                 ivy-use-virtual-buffers t
                 ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
+
+(use-package ivy-hydra
+  :ensure t
+  :requires (ivy hydra))
 
 (use-package counsel
   :ensure t
