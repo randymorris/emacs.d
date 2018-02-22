@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path (locate-user-emacs-file "lisp"))
 
 ;; Display
 (tool-bar-mode -1)
@@ -8,7 +8,7 @@
 
 ;; Behavior
 (setq backup-inhibited t
-      custom-file "~/.emacs.d/lisp/custom.el"
+      custom-file (locate-user-emacs-file "lisp/custom.el")
       mouse-yank-at-point t
       require-final-newline t
       scroll-conservatively 1
@@ -37,8 +37,8 @@ the end of the file."
 (add-hook 'prog-mode-hook 'rm-guess-indent-tabs-mode)
 
 ;; Temp files
-(setq auto-save-list-file-prefix "~/.emacs.d/tmp/autosaves/"
-      url-configuration-directory "~/.emacs.d/tmp/url/")
+(setq auto-save-list-file-prefix (locate-user-emacs-file "tmp/autosaves/")
+      url-configuration-directory (locate-user-emacs-file "tmp/url/"))
 
 ;; Enable disabled commands
 (put 'narrow-to-region 'disabled nil)
@@ -84,7 +84,7 @@ exist, also reset the scratch buffer to its initial state."
 
 
 (load custom-file t)
-(load "~/.emacs.d/lisp/local-configuration.el" t)
+(load (locate-user-emacs-file "lisp/local-configuration.el") t)
 
 ;; Package configuration
 (require 'package)
@@ -92,4 +92,4 @@ exist, also reset the scratch buffer to its initial state."
 (package-initialize)
 (require 'rm-packages)
 
-(load "~/.emacs.d/lisp/local-packages.el" t)
+(load (locate-user-emacs-file "lisp/local-packages.el") t)

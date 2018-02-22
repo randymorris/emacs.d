@@ -23,7 +23,7 @@
 (use-package recentf
   ;; Stores recent files for easy access
   :ensure t
-  :config (setq recentf-save-file "~/.emacs.d/tmp/recent-files"))
+  :config (setq recentf-save-file (locate-user-emacs-file "tmp/recent-files")))
 
 (use-package term
   ;; term and ansi-term
@@ -113,8 +113,9 @@
   ;; Run commands on multiple parts of the buffer simultaniously
   :ensure t
   :requires hydra
-  :init (setq mc/list-file "~/.emacs.d/tmp/mc-lists.el")
-  :config (defhydra rm-multiple-cursors-hydra (rm-map "n" :hint nil)
+  :init (setq mc/list-file (locate-user-emacs-file "tmp/mc-lists.el"))
+  :config (defhydra rm-multiple-cursors-hydra
+            (rm-map "n" :hint nil)
               "
      ^Up^            ^Down^        ^Other^
 ----------------------------------------------
@@ -176,7 +177,7 @@
   :ensure t
   :config (setq tramp-default-method "ssh"
                 tramp-use-ssh-controlmaster-options nil
-                tramp-persistency-file-name "~/.emacs.d/tmp/tramp"
+                tramp-persistency-file-name (locate-user-emacs-file "tmp/tramp")
                 tramp-shell-prompt-pattern
                 "\\(?:^\\|\\)[^]#$%>\n]*#?[]#$%>]+ *\\(\\[[0-9;]*[a-zA-Z] *\\)*"
                 tramp-password-prompt-regexp
@@ -193,12 +194,12 @@
   :init (save-place-mode t)
   :config (progn
             (setq-default save-place t)
-            (setq save-place-file "~/.emacs.d/tmp/places")))
+            (setq save-place-file (locate-user-emacs-file "tmp/places"))))
 
 (use-package savehist
   ;; Restore minibuffer history
   :init (savehist-mode 1)
-  :config (setq savehist-file "~/.emacs.d/tmp/history"))
+  :config (setq savehist-file (locate-user-emacs-file "tmp/history")))
 
 (use-package hippie-exp
   ;; Extensive list of completion methods
@@ -265,7 +266,7 @@
   :ensure t
   :requires ivy
   :bind (("M-x" . counsel-M-x))
-  :config (setq smex-save-file "~/.emacs.d/tmp/smex-items"))
+  :config (setq smex-save-file (locate-user-emacs-file "tmp/smex-items")))
 
 (use-package projectile
   ;; Project-specific navigation
