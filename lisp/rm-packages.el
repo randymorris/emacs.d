@@ -278,9 +278,13 @@
   :ensure t
   :requires (ivy hydra))
 
+(use-package smex
+  ;; Used for counsel-M-x to show most recently used commands
+  :ensure t)
+
 (use-package counsel
   :ensure t
-  :requires ivy
+  :requires (ivy smex)
   :bind (("M-x" . counsel-M-x))
   :config (setq smex-save-file (locate-user-emacs-file "tmp/smex-items")))
 
