@@ -292,8 +292,13 @@
   ;; Project-specific navigation
   :ensure t
   :requires ivy
-  :bind (:map rm-map ("C-f" . projectile-find-file))
   :config (setq projectile-completion-system 'ivy))
+
+(use-package counsel-projectile
+  :ensure t
+  :bind (:map rm-map
+              ("C-f" . counsel-projectile-find-file)
+              ("C-b" . counsel-projectile-switch-to-buffer)))
 
 (use-package avy
   :ensure t
