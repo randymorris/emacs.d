@@ -4,49 +4,45 @@
   (package-install 'use-package))
 (require 'use-package)
 
+(setq use-package-always-ensure t)
+
 (use-package sublime-themes
   ;; Needed for wilson theme
   :disabled t
-  :ensure t
   :init (progn
           (load-theme 'wilson t)
           (load-theme 'rm-wilson t)))
 
 (use-package white-sand-theme
   ;; Needed for white-sand theme
-  :ensure t
   :init (progn
           (load-theme 'white-sand t)
           (load-theme 'rm-white-sand t)))
 
-(use-package diminish
-  ;; Remove minor-mode cruft from the status line
-  :ensure t)
+;; Remove minor-mode cruft from the status line
+(use-package diminish)
 
 (use-package hydra
   ;; Easy repeating keybinds
-  :ensure t
   :init (require 'hydra))
 
 (use-package recentf
   ;; Stores recent files for easy access
-  :ensure t
   :config (setq recentf-save-file (locate-user-emacs-file "tmp/recent-files")))
 
 (use-package term
   ;; term and ansi-term
+  :ensure nil
   :bind (:map term-raw-map
               ("C-h" . nil)
               ("M-x" . nil)))
 
 (use-package js2-mode
   ;; A better javascript mode
-  :ensure t
   :config (setq js2-global-externs '("require" "module" "jest" "jasmine"
                                      "it" "expect" "describe" "beforeEach")))
 
 (use-package web-mode
-  :ensure t
   :requires js2-mode
   :mode "\\.jsx?\\'\\|\\.html\\'"
   :config (progn
@@ -64,7 +60,6 @@
 
 (use-package python
   ;; fgallina's python mode
-  :ensure t
   :mode ("\\.py\\'" . python-mode)
   :bind (:map python-mode-map ("RET" . newline-and-indent))
   :config (progn
@@ -75,7 +70,6 @@
 
 (use-package whitespace
   ;; Display whitespace as meaningful characters
-  :ensure t
   :diminish whitespace-mode
   :init (add-hook 'prog-mode-hook (lambda () (whitespace-mode 1)))
   :config (setq whitespace-style
@@ -89,11 +83,11 @@
 
 (use-package uniquify
   ;; Better display duplicate buffer names
+  :ensure nil
   :init (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
 (use-package org
   ;; Org mode
-  :ensure t
   :config (progn
             (setq org-startup-indented t
                   org-default-notes-file "~/org/todo.org"
@@ -119,7 +113,6 @@
 
 (use-package multiple-cursors
   ;; Run commands on multiple parts of the buffer simultaniously
-  :ensure t
   :requires hydra
   :init (setq mc/list-file (locate-user-emacs-file "tmp/mc-lists.el"))
   :config (defhydra rm-multiple-cursors-hydra
@@ -145,7 +138,6 @@
 
 (use-package expand-region
   ;; Incrementally mark semantic blocks of text
-  :ensure t
   :bind (:map rm-map ("e" . rm-expand-region-hydra/body))
   :config (progn
             (setq expand-region-fast-keys-enabled nil)
@@ -158,7 +150,6 @@
 
 (use-package ack
   ;; Replacement for M-x find-grep
-  :ensure t
   :init (defalias 'ag 'ack)
   :bind (:map rm-map ("a" . rm-ack-symbol-in-project))
   :config (progn
@@ -177,7 +168,6 @@
 
 (use-package ps-print
   ;; Pretty printing
-  :ensure t
   :config (setq ps-number-of-columns 2
                 ps-landscape-mode t
                 ps-header-title-font-size '(8 . 10)
@@ -191,7 +181,6 @@
 
 (use-package tramp
   ;; Transparent Remote Access
-  :ensure t
   :config (setq tramp-default-method "ssh"
                 tramp-use-ssh-controlmaster-options nil
                 tramp-persistency-file-name (locate-user-emacs-file "tmp/tramp")
@@ -202,12 +191,12 @@
 
 (use-package tramp-term
   ;; Create remote ansi-terms that automatically track pwd
-  :ensure t
   :init (defalias 'ssh 'tramp-term)
   :commands tramp-term)
 
 (use-package saveplace
   ;; Restore point position when revisiting a file
+  :ensure nil
   :init (save-place-mode t)
   :config (progn
             (setq-default save-place t)
@@ -215,15 +204,16 @@
 
 (use-package savehist
   ;; Restore minibuffer history
+  :ensure nil
   :init (savehist-mode 1)
   :config (setq savehist-file (locate-user-emacs-file "tmp/history")))
 
 (use-package hippie-exp
   ;; Extensive list of completion methods
+  :ensure nil
   :bind (("M-/" . hippie-expand)))
 
 (use-package magit
-  :ensure t
   :bind (:map rm-map ("s" . rm-magit-status))
   :config (progn
             (setq magit-status-buffer-switch-function 'switch-to-buffer
@@ -237,12 +227,10 @@
               (magit-status)
               (delete-other-windows))))
 
-(use-package magit-svn
-  :ensure t)
+(use-package magit-svn)
 
 (use-package flycheck
   ;; Syntax checking on the fly
-  :ensure t
   :requires hydra
   :bind (:map rm-map ("F" . rm-flycheck-hydra/body))
   :config (defhydra rm-flycheck-hydra
@@ -253,7 +241,6 @@
 
 (use-package sane-term
   ;; Quickly cycle term-mode buffers
-  :ensure t
   :init (require 'sane-term)
   :bind (:map rm-map
               ("t" . sane-term)
@@ -262,16 +249,16 @@
 
 (use-package elec-pair
   ;; Auto-insert matching pairs
+  :ensure nil
   :init (electric-pair-mode t))
 
 
-(use-package flx
-  ;; Provides fuzzy matching for ivy completion
-  :ensure t)
+;; Provides fuzzy matching for ivy completion
+(use-package flx)
+
 
 (use-package ivy
   ;; Better completion than ido, simliar to ido-vertical-mode
-  :ensure t
   :requires flx
   :diminish ivy-mode
   :init (ivy-mode 1)
@@ -283,33 +270,28 @@
                 ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
 
 (use-package ivy-hydra
-  :ensure t
   :requires (ivy hydra))
 
-(use-package smex
-  ;; Used for counsel-M-x to show most recently used commands
-  :ensure t)
+;; Used for counsel-M-x to show most recently used commands
+(use-package smex)
+
 
 (use-package counsel
-  :ensure t
   :requires (ivy smex)
   :bind (("M-x" . counsel-M-x))
   :config (setq smex-save-file (locate-user-emacs-file "tmp/smex-items")))
 
 (use-package projectile
   ;; Project-specific navigation
-  :ensure t
   :requires ivy
   :config (setq projectile-completion-system 'ivy))
 
 (use-package counsel-projectile
-  :ensure t
   :bind (:map rm-map
               ("C-f" . counsel-projectile-find-file)
               ("C-b" . counsel-projectile-switch-to-buffer)))
 
 (use-package avy
-  :ensure t
   :diminish avy-mode
   :bind (:map rm-map
               ("l" . avy-goto-line)
@@ -317,14 +299,12 @@
               ("w" . avy-goto-word-or-subword-1)))
 
 (use-package dumb-jump
-  :ensure t
   :bind (:map rm-map
               ("." . dumb-jump-go)
               ("," . dumb-jump-back))
   :config (setq dumb-jump-selector 'ivy))
 
 (use-package transient
-  :ensure t
   :config (setq transient-history-file (locate-user-emacs-file "tmp/transient-history.el")))
 
 (provide 'rm-packages)
