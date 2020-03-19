@@ -6,10 +6,18 @@
 
 (use-package sublime-themes
   ;; Needed for wilson theme
+  :disabled t
   :ensure t
   :init (progn
           (load-theme 'wilson t)
           (load-theme 'rm-wilson t)))
+
+(use-package white-sand-theme
+  ;; Needed for white-sand theme
+  :ensure t
+  :init (progn
+          (load-theme 'white-sand t)
+          (load-theme 'rm-white-sand t)))
 
 (use-package diminish
   ;; Remove minor-mode cruft from the status line
