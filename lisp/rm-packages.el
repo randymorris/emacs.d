@@ -323,4 +323,8 @@
               ("," . dumb-jump-back))
   :config (setq dumb-jump-selector 'ivy))
 
+(use-package transient
+  :ensure t
+  :config (setq transient-history-file (locate-user-emacs-file "tmp/transient-history.el")))
+
 (provide 'rm-packages)
