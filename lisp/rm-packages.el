@@ -275,6 +275,9 @@
 ;; Used for counsel-M-x to show most recently used commands
 (use-package smex)
 
+(use-package markdown-mode)
+(use-package yaml-mode)
+
 
 (use-package counsel
   :requires (ivy smex)
