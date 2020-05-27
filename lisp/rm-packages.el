@@ -235,6 +235,7 @@
                   magit-save-some-buffers t
                   magit-process-popup-time 10
                   magit-diff-refine-hunk 'all
+                  magit-section-visibility-indicator nil
                   magit-last-seen-setup-instructions "1.4.0")
 
             (defun rm-magit-status ()
