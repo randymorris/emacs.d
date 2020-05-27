@@ -6,6 +6,10 @@
 
 (setq use-package-always-ensure t)
 
+(when (string-equal system-type "darwin")
+  (use-package exec-path-from-shell
+    :init (exec-path-from-shell-initialize)))
+
 (use-package sublime-themes
   ;; Needed for wilson theme
   :disabled t
