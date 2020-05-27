@@ -12,7 +12,8 @@
       mouse-yank-at-point t
       require-final-newline t
       scroll-conservatively 1
-      inhibit-startup-screen t)
+      inhibit-startup-screen t
+      frame-resize-pixelwise t)
 
 ;; Default indentation
 (setq-default indent-tabs-mode nil
