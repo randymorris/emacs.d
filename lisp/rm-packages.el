@@ -19,9 +19,20 @@
 
 (use-package white-sand-theme
   ;; Needed for white-sand theme
+  :disabled t
   :init (progn
           (load-theme 'white-sand t)
           (load-theme 'rm-white-sand t)))
+
+(use-package modus-operandi-theme
+  :init (progn
+          (load-theme 'modus-operandi t)
+          (load-theme 'rm-modus-operandi t)))
+
+(use-package modus-vivendi-theme
+  :disabled t
+  :init (progn
+          (load-theme 'modus-vivendi t)))
 
 ;; Remove minor-mode cruft from the status line
 (use-package diminish)
