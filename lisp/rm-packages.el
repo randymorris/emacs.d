@@ -323,4 +323,11 @@
 (use-package transient
   :config (setq transient-history-file (locate-user-emacs-file "tmp/transient-history.el")))
 
+
+(use-package python-black
+  :init (setq python-black-program (locate-user-emacs-file "python_env/bin/black"))
+  :demand t
+  :after python
+  :hook (python-mode . python-black-on-save-mode-enable-dwim))
+
 (provide 'rm-packages)
