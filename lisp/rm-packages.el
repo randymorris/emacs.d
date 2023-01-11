@@ -261,14 +261,6 @@
             ("n" flycheck-next-error "Next")
             ("p" flycheck-previous-error "Previous")))
 
-(use-package sane-term
-  ;; Quickly cycle term-mode buffers
-  :init (require 'sane-term)
-  :bind (:map rm-map
-              ("t" . sane-term)
-              ("C-t" . sane-term-create))
-  :config (setq sane-term-next-on-kill nil))
-
 (use-package elec-pair
   ;; Auto-insert matching pairs
   :ensure nil
