@@ -337,5 +337,14 @@
             (setq-default shell-file-name "/bin/bash")
             (setq explicit-shell-file-name "/bin/bash")))
 
+(use-package vterm
+  :config (setq vterm-kill-buffer-on-exit t))
+
+(use-package multi-vterm
+  :requires vterm
+  :bind (:map rm-map
+              ("t" . multi-vterm-next)
+              ("C-t" . multi-vterm))
+  :config (setq multi-vterm-buffer-name "vterm"))
 
 (provide 'rm-packages)
