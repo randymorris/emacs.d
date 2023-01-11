@@ -87,7 +87,7 @@
 (use-package whitespace
   ;; Display whitespace as meaningful characters
   :diminish whitespace-mode
-  :init (add-hook 'prog-mode-hook (lambda () (whitespace-mode 1)))
+  ;; :init (add-hook 'prog-mode-hook (lambda () (whitespace-mode 1)))
   :config (setq whitespace-style
                 '(face tabs spaces trailing
                        space-before-tab newline
