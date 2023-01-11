@@ -292,7 +292,6 @@
 (use-package markdown-mode)
 (use-package yaml-mode)
 
-
 (use-package counsel
   :requires (ivy smex)
   :bind (("M-x" . counsel-M-x))
