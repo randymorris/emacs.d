@@ -330,4 +330,12 @@
   :after python
   :hook (python-mode . python-black-on-save-mode-enable-dwim))
 
+
+(use-package nano
+  :load-path "lisp/nano-emacs"
+  :config (progn
+            (setq-default shell-file-name "/bin/bash")
+            (setq explicit-shell-file-name "/bin/bash")))
+
+
 (provide 'rm-packages)
