@@ -19,6 +19,9 @@
 (setq-default indent-tabs-mode nil
               tab-width 4)
 
+;; Line wrap behavior
+(setq-default fill-column 120)
+
 
 ;; Platform specific settings
 (when (string-equal system-type "darwin")
