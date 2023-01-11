@@ -230,7 +230,7 @@
   :bind (("M-/" . hippie-expand)))
 
 (use-package magit
-  :bind (:map rm-map ("s" . rm-magit-status))
+  :bind (:map rm-map ("s" . magit-status))
   :config (progn
             (setq magit-status-buffer-switch-function 'switch-to-buffer
                   magit-save-some-buffers t
@@ -239,10 +239,15 @@
                   magit-section-visibility-indicator nil
                   magit-last-seen-setup-instructions "1.4.0")
 
-            (defun rm-magit-status ()
-              (interactive)
-              (magit-status)
-              (delete-other-windows))))
+            (remove-hook 'magit-status-sections-hook 'magit-insert-status-headers)
+
+            (defadvice magit-status (around magit-fullscreen activate)
+              (window-configuration-to-register :magit-fullscreen)
+              ad-do-it
+              (delete-other-windows))
+
+            (defadvice magit-quit-window (after magit-restore-screen activate)
+              (jump-to-register :magit-fullscreen))))
 
 (use-package magit-svn)
 
