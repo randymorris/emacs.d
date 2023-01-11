@@ -1,0 +1,3 @@
+[submodule "lisp/nano-emacs"]
+	path = lisp/nano-emacs
+	url = ssh://git@github.com/randymorris/nano-emacs.git
