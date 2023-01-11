@@ -92,7 +92,7 @@ exist, also reset the scratch buffer to its initial state."
 
 ;; Package configuration
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 (require 'rm-packages)
 
