@@ -25,6 +25,7 @@
           (load-theme 'rm-white-sand t)))
 
 (use-package modus-operandi-theme
+  :disabled t
   :init (progn
           (load-theme 'modus-operandi t)
           (load-theme 'rm-modus-operandi t)))
