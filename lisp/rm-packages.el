@@ -10,31 +10,6 @@
   (use-package exec-path-from-shell
     :init (exec-path-from-shell-initialize)))
 
-(use-package sublime-themes
-  ;; Needed for wilson theme
-  :disabled t
-  :init (progn
-          (load-theme 'wilson t)
-          (load-theme 'rm-wilson t)))
-
-(use-package white-sand-theme
-  ;; Needed for white-sand theme
-  :disabled t
-  :init (progn
-          (load-theme 'white-sand t)
-          (load-theme 'rm-white-sand t)))
-
-(use-package modus-operandi-theme
-  :disabled t
-  :init (progn
-          (load-theme 'modus-operandi t)
-          (load-theme 'rm-modus-operandi t)))
-
-(use-package modus-vivendi-theme
-  :disabled t
-  :init (progn
-          (load-theme 'modus-vivendi t)))
-
 ;; Remove minor-mode cruft from the status line
 (use-package diminish)
 
@@ -46,33 +21,10 @@
   ;; Stores recent files for easy access
   :config (setq recentf-save-file (locate-user-emacs-file "tmp/recent-files")))
 
-(use-package term
-  ;; term and ansi-term
-  :ensure nil
-  :bind (:map term-raw-map
-              ("C-h" . nil)
-              ("M-x" . nil)))
-
 (use-package js2-mode
   ;; A better javascript mode
   :config (setq js2-global-externs '("require" "module" "jest" "jasmine"
                                      "it" "expect" "describe" "beforeEach")))
-
-(use-package web-mode
-  :requires js2-mode
-  :mode "\\.jsx?\\'\\|\\.html\\'"
-  :config (progn
-            (setq web-mode-attr-indent-offset 4
-                  web-mode-code-indent-offset 2
-                  web-mode-markup-indent-offset 2)
-            (defun rm-maybe-jsx-mode ()
-              (when (string-equal "jsx" web-mode-content-type)
-                (subword-mode 1)))
-            (add-hook 'web-mode-hook 'rm-maybe-jsx-mode)
-            (add-hook 'web-mode-hook (lambda () (whitespace-mode -1)))
-            (add-to-list 'web-mode-engine-file-regexps '("django" . "templates/.*\\.html\\'"))
-            (add-to-list 'web-mode-content-types '("jsx" . ".*\\.jsx?\\'"))
-            (add-to-list 'web-mode-content-types '("jsx" . "jsx/.*\\.js\\'"))))
 
 (use-package python
   ;; fgallina's python mode
@@ -205,11 +157,6 @@
                 tramp-password-prompt-regexp
                 "^.*\\([pP]assword\\|[pP]assphrase\\|PASSCODE\\).*:"))
 
-(use-package tramp-term
-  ;; Create remote ansi-terms that automatically track pwd
-  :init (defalias 'ssh 'tramp-term)
-  :commands tramp-term)
-
 (use-package saveplace
   ;; Restore point position when revisiting a file
   :ensure nil
@@ -261,15 +208,8 @@
             ("n" flycheck-next-error "Next")
             ("p" flycheck-previous-error "Previous")))
 
-(use-package elec-pair
-  ;; Auto-insert matching pairs
-  :ensure nil
-  :init (electric-pair-mode t))
-
-
 ;; Provides fuzzy matching for ivy completion
 (use-package flx)
-
 
 (use-package ivy
   ;; Better completion than ido, simliar to ido-vertical-mode
@@ -306,13 +246,6 @@
   :bind (:map rm-map
               ("C-f" . counsel-projectile-find-file)
               ("C-b" . counsel-projectile-switch-to-buffer)))
-
-(use-package avy
-  :diminish avy-mode
-  :bind (:map rm-map
-              ("l" . avy-goto-line)
-              ("c" . avy-goto-char)
-              ("w" . avy-goto-word-or-subword-1)))
 
 (use-package dumb-jump
   :bind (:map rm-map
