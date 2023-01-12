@@ -1,5 +1,6 @@
 tmp/*
 elpa/*
+python_env/*
 rm-auth.el
 local-configuration.el
 custom.el
